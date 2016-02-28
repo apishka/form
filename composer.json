@@ -1,0 +1,25 @@
+{
+    "name": "apishka/form",
+    "description": "Apishka forms",
+    "keywords": ["form", "apishka"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeny Reykh",
+            "email": "evgeny@reykh.com"
+        }
+    ],
+    "require": {
+        "php": ">=7",
+        "apishka/easy-extend": "*"
+    },
+    "require-dev": {
+        "apishka/cs": "^1.0.0",
+        "phpunit/phpunit": "^5.1.4"
+    },
+    "autoload": {
+        "psr-0": {
+            "Apishka_Form_": "source/"
+        }
+    }
+}
