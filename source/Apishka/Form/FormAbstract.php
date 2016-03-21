@@ -4,6 +4,7 @@
  * Apishka form form abstract
  *
  * @abstract
+ *
  * @author Evgeny Reykh <evgeny@reykh.com>
  */
 
