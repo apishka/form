@@ -15,12 +15,12 @@ class Main_Modules_User_Form_Common extends Apishka_Form_FormAbstract
 {
     protected function processStructure()
     {
-        $this->add(
+        $this->addField(
             Apishka_Form_Field_Int::jihad('make_id')
                 ->setRequired(true)
         );
 
-        $this->add(
+        $this->addField(
             Apishka_Form_Field_Int::jihad('model_id')
                 ->setValues(
                     function()

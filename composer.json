@@ -11,7 +11,8 @@
     ],
     "require": {
         "php": ">=7",
-        "apishka/easy-extend": "*"
+        "apishka/easy-extend": "*",
+        "apishka/validator": "^1.0.0"
     },
     "require-dev": {
         "apishka/cs": "^1.0.0",
