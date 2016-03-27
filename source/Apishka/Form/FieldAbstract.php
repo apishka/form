@@ -2,10 +2,6 @@
 
 /**
  * Apishka form field abstract
- *
- * @abstract
- *
- * @author Evgeny Reykh <evgeny@reykh.com>
  */
 
 abstract class Apishka_Form_FieldAbstract
