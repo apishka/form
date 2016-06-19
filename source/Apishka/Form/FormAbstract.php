@@ -29,6 +29,17 @@ abstract class Apishka_Form_FormAbstract
     private $_validator = null;
 
     /**
+     * Process structure
+     */
+
+    protected function processStructure()
+    {
+        $this->addField(
+            Apishka_Form_Field_Signature::apishka()
+        );
+    }
+
+    /**
      * Is valid
      *
      * @return bool
@@ -39,13 +50,27 @@ abstract class Apishka_Form_FormAbstract
         if (!$this->isSent())
             return false;
 
+        $valid = true;
         foreach ($this->_fields as $field)
         {
             if (!$field->isValid())
-                return false;
+                $valid = false;
         }
 
+        if (!$valid)
+            return false;
+
+        $this->validate();
+
         return true;
+    }
+
+    /**
+     * Validate
+     */
+
+    protected function validate()
+    {
     }
 
     /**
@@ -69,14 +94,14 @@ abstract class Apishka_Form_FormAbstract
 
     public function __get($name)
     {
-        if ($this->hasField($name))
-            return $this->getField($name);
-
         $method = '__get' . $name;
         if (method_exists($this, $method))
             return $this->$method();
 
-        throw new \Exception('Property ' . var_export($name, true) . ' not available in ' . var_export(get_class($this), true));
+        if ($this->hasField($name))
+            return $this->getField($name);
+
+        throw new Exception('Property ' . var_export($name, true) . ' not available in ' . var_export(get_class($this), true));
     }
 
     /**
@@ -88,7 +113,7 @@ abstract class Apishka_Form_FormAbstract
     public function getValidator()
     {
         if ($this->_validator === null)
-            $this->_validator = new \Apishka\Validator\Validator();
+            $this->_validator = \Apishka\Validator\Validator::apishka();
 
         return $this->_validator;
     }

@@ -57,7 +57,7 @@ abstract class Apishka_Form_FieldAbstract
      * @return Admin_ElementAbstract this
      */
 
-    protected function initialize($form)
+    public function initialize(Apishka_Form_FormAbstract $form)
     {
         $this->_form = $form;
 
@@ -176,6 +176,19 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Set structure name
+     *
+     * @param string $name
+     *
+     * @return Apishka_Form_FieldAbstract this
+     */
+
+    public function setStructureName($name)
+    {
+        return $this->setOption('structure_name', $name);
+    }
+
+    /**
      * Get structure name
      *
      * @return string
@@ -183,7 +196,21 @@ abstract class Apishka_Form_FieldAbstract
 
     public function getStructureName()
     {
-        return $this->getName();
+        if (!$this->getOption('structure_name'))
+            return $this->getName();
+
+        return $this->getOption('structure_name');
+    }
+
+    /**
+     * Get structure name
+     *
+     * @return string
+     */
+
+    protected function __getStructure_name()
+    {
+        return $this->getStructureName();
     }
 
     /**
@@ -268,23 +295,32 @@ abstract class Apishka_Form_FieldAbstract
     protected function __getValue()
     {
         if ($this->getForm()->isSent())
-        {
-            try
-            {
-                return $this->getForm()->getValidator()->validate(
-                    $this->getValueFromRequest(),
-                    $this->getMergedValidations()
-                );
-            }
-            catch (\Apishka\Validator\Exception $e)
-            {
-                $this->_error = $e;
-
-                return $this->getValueFromRequest();
-            }
-        }
+            return $this->validate();
 
         return $this->getValue();
+    }
+
+    /**
+     * Validate
+     *
+     * @return mixed
+     */
+
+    protected function validate()
+    {
+        try
+        {
+            return $this->getForm()->getValidator()->validate(
+                $this->getValueFromRequest(),
+                $this->getMergedValidations()
+            );
+        }
+        catch (\Apishka\Validator\Exception $e)
+        {
+            $this->_error = $e;
+
+            return $this->getValueFromRequest();
+        }
     }
 
     /**

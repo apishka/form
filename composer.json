@@ -22,5 +22,10 @@
         "psr-0": {
             "Apishka_Form_": "source/"
         }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "ApishkaTest_Form_": "tests/"
+        }
     }
 }
