@@ -52,24 +52,24 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('signature_test');
 
         $this->assertEquals(
-            'signature_test_01b11c5336cb3bf56a97a6bdfda37d12',
+            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
             $field->getName()
         );
 
         $this->assertEquals(
-            'signature_test_01b11c5336cb3bf56a97a6bdfda37d12',
+            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
             $field->name
         );
 
         $field->setName('signature_test_2');
 
         $this->assertEquals(
-            'signature_test_2_01b11c5336cb3bf56a97a6bdfda37d12',
+            'signature_test_2_779f90f06b9104daca4d454b6188a9bc',
             $field->getName()
         );
 
         $this->assertEquals(
-            'signature_test_2_01b11c5336cb3bf56a97a6bdfda37d12',
+            'signature_test_2_779f90f06b9104daca4d454b6188a9bc',
             $field->name
         );
     }
@@ -85,6 +85,23 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             'signature_test',
             $field->getStructureName()
+        );
+
+        $this->assertEquals(
+            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
+            $field->getName()
+        );
+
+        $field->setStructureName('signature_test_2');
+
+        $this->assertEquals(
+            'signature_test_2',
+            $field->getStructureName()
+        );
+
+        $this->assertEquals(
+            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
+            $field->getName()
         );
     }
 }

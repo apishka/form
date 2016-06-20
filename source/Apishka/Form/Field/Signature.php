@@ -30,6 +30,6 @@ class Apishka_Form_Field_Signature extends Apishka_Form_FieldAbstract
 
     public function getName()
     {
-        return parent::getName() . '_' . md5(get_class($this->getForm()));
+        return parent::getName() . '_' . md5(parent::getName() . get_class($this->getForm()));
     }
 }
