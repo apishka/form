@@ -8,12 +8,15 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Get form
+     *
+     * @param bool $is_sent
      */
 
-    protected function getForm($is_sent = true)
+    protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
             ->setMockClassName('Test_Form')
+            ->setMethods(['isSent'])
             ->getMock()
         ;
 
@@ -29,14 +32,15 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
      * Get field
      *
      * @param string $name
+     * @param bool   $is_sent
      *
      * @return Apishka_Form_Field_Signature
      */
 
-    protected function getField($name)
+    protected function getField($name, $is_sent = true)
     {
         $field = Apishka_Form_Field_Signature::apishka($name);
-        $field->initialize($this->getForm());
+        $field->initialize($this->getForm($is_sent));
 
         return $field;
     }
@@ -100,6 +104,47 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
             $field->getName()
+        );
+    }
+
+    /**
+     * Test value with empty request
+     *
+     * @expectedException Apishka\Validator\FriendlyException
+     * @expectedExceptionMessage cannot be empty
+     */
+
+    public function testValueWithEmptyRequest()
+    {
+        $field = $this->getField('signature');
+
+        $this->assertEquals(
+            '82abf2f6354089771876c169ef39234d',
+            $field->getValue()
+        );
+
+        $this->assertFalse($field->isValid());
+        $this->assertNull($field->value);
+
+        throw $field->getError();
+    }
+
+    /**
+     * Test value
+     */
+
+    public function testValueWithRequest()
+    {
+        $field = $this->getField('signature');
+
+        $_REQUEST = array(
+            $field->name => '82abf2f6354089771876c169ef39234d',
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertEquals(
+            '82abf2f6354089771876c169ef39234d',
+            $field->value
         );
     }
 }

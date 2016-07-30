@@ -4,7 +4,7 @@
  * Apishka form field signature
  */
 
-class Apishka_Form_Field_Signature extends Apishka_Form_FieldAbstract
+class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
 {
     /**
      * Get default options
@@ -18,6 +18,7 @@ class Apishka_Form_Field_Signature extends Apishka_Form_FieldAbstract
             parent::getDefaultOptions(),
             array(
                 'structure_name'    => parent::getName(),
+                'required'          => true,
             )
         );
     }
@@ -30,6 +31,20 @@ class Apishka_Form_Field_Signature extends Apishka_Form_FieldAbstract
 
     public function getName()
     {
-        return parent::getName() . '_' . md5(parent::getName() . get_class($this->getForm()));
+        return parent::getName() . '_' . md5(parent::getName() . $this->getForm()->getUniqueId());
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+
+    public function getValue()
+    {
+        return md5(
+            $this->getForm()->getUniqueId() .
+            serialize($this->getForm()->getSignatureParams())
+        );
     }
 }

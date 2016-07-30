@@ -73,8 +73,9 @@ abstract class Apishka_Form_FieldAbstract
     protected function getDefaultOptions()
     {
         return array(
-            'value'     => null,
-            'required'  => false,
+            'value'         => null,
+            'required'      => false,
+            'validations'   => array(),
         );
     }
 
@@ -90,37 +91,6 @@ abstract class Apishka_Form_FieldAbstract
             throw new LogicException('Field is not initialized');
 
         return $this->_form;
-    }
-
-    /**
-     * Get default validations
-     *
-     * @return array
-     */
-
-    protected function getDefaultValidations()
-    {
-        return array();
-    }
-
-    /**
-     * Get merged validations
-     *
-     * @return array
-     */
-
-    protected function getMergedValidations()
-    {
-        $validations = $this->getValidations();
-        arsort($validations);
-
-        $default_validations = $this->getDefaultValidations();
-        arsort($default_validations);
-
-        $result = array_replace($default_validations, $validations);
-        arsort($result);
-
-        return $result;
     }
 
     /**
@@ -324,6 +294,77 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Get default validations
+     *
+     * @return array
+     */
+
+    protected function getDefaultValidations()
+    {
+        return array();
+    }
+
+    /**
+     * Get merged validations
+     *
+     * @return array
+     */
+
+    protected function getMergedValidations()
+    {
+        $validations = $this->getValidations();
+        arsort($validations);
+
+        $default_validations = $this->getDefaultValidations();
+        arsort($default_validations);
+
+        $result = array_replace($default_validations, $validations);
+        arsort($result);
+
+        return $result;
+    }
+
+    /**
+     * Set validations
+     *
+     * @param mixed $validate
+     *
+     * @return Apishka_Form_FieldAbstract
+     */
+
+    public function setValidations($validations)
+    {
+        return $this->setOption('validations', $validations);
+    }
+
+    /**
+     * Get validations
+     *
+     * @return Admin_FieldAbstract this
+     */
+
+    public function getValidations()
+    {
+        return $this->getOption('validations');
+    }
+
+    /**
+     * Add validations
+     *
+     * @param array $validations
+     *
+     * @return Admin_FieldAbstract this
+     */
+
+    public function addValidations($validations)
+    {
+        $current = $this->getValidations();
+        $current += $validations;
+
+        return $this->setValidations($current);
+    }
+
+    /**
      * Get error
      *
      * @return \Apishka\Validator\Exception
@@ -342,7 +383,10 @@ abstract class Apishka_Form_FieldAbstract
 
     public function getValueFromRequest()
     {
-        return $_REQUEST[$this->getName()];
+        if (array_key_exists($this->getName(), $_REQUEST))
+            return $_REQUEST[$this->getName()];
+
+        return null;
     }
 
     /**

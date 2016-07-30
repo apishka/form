@@ -34,9 +34,9 @@ abstract class Apishka_Form_FormAbstract
 
     protected function processStructure()
     {
-        $this->addField(
-            Apishka_Form_Field_Signature::apishka()
-        );
+        $signature = $this->processSignatureField();
+        if ($signature)
+            $this->addField($signature);
     }
 
     /**
@@ -177,5 +177,38 @@ abstract class Apishka_Form_FormAbstract
         unset($this->_fields[$name]);
 
         return $this;
+    }
+
+    /**
+     * Get unique id
+     *
+     * @return string
+     */
+
+    public function getUniqueId()
+    {
+        return get_class($this);
+    }
+
+    /**
+     * Process signature field
+     *
+     * @return Apishka_Form_Field_Signature
+     */
+
+    protected function processSignatureField()
+    {
+        return Apishka_Form_Field_Signature::apishka('signature');
+    }
+
+    /**
+     * Returns signature params
+     *
+     * @return array
+     */
+
+    public function getSignatureParams()
+    {
+        return array();
     }
 }
