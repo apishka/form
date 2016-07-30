@@ -374,6 +374,34 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Get error message
+     *
+     * @return string|null
+     */
+
+    protected function __getErrorMessage()
+    {
+        if ($this->isValid())
+            return null;
+
+        return $this->getError()->getMessage();
+    }
+
+    /**
+     * Get error code
+     *
+     * @return int|null
+     */
+
+    protected function __getErrorCode()
+    {
+        if ($this->isValid())
+            return null;
+
+        return $this->getError()->getCode();
+    }
+
+    /**
      * Set error
      *
      * @param \Apishka\Validator\Exception $exception
