@@ -8,8 +8,6 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Get form
-     *
-     * @return void
      */
 
     protected function getForm($is_sent = true)
