@@ -287,9 +287,7 @@ abstract class Apishka_Form_FieldAbstract
         }
         catch (\Apishka\Validator\Exception $e)
         {
-            $this->_error = $e;
-
-            return $this->getValueFromRequest();
+            return $this->setError($e)->getValueFromRequest();
         }
     }
 
@@ -373,6 +371,21 @@ abstract class Apishka_Form_FieldAbstract
     public function getError()
     {
         return $this->_error;
+    }
+
+    /**
+     * Set error
+     *
+     * @param \Apishka\Validator\Exception $exception
+     *
+     * @return Apishka_Form_FieldAbstract
+     */
+
+    public function setError(\Apishka\Validator\Exception $exception)
+    {
+        $this->_error = $exception;
+
+        return $this;
     }
 
     /**

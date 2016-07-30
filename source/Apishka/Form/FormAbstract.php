@@ -82,7 +82,7 @@ abstract class Apishka_Form_FormAbstract
     public function isSent()
     {
         if ($this->hasField('signature'))
-            return $this->getField('signature')->isValid();
+            return $this->getField('signature')->getValueFromRequest() !== null;
 
         return true;
     }
