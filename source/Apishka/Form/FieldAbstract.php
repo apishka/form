@@ -313,13 +313,13 @@ abstract class Apishka_Form_FieldAbstract
     protected function getMergedValidations()
     {
         $validations = $this->getValidations();
-        arsort($validations);
+        $validations = array_reverse($validations, true);
 
         $default_validations = $this->getDefaultValidations();
-        arsort($default_validations);
+        $default_validations = array_reverse($default_validations, true);
 
         $result = array_replace($default_validations, $validations);
-        arsort($result);
+        $result = array_reverse($result, true);
 
         return $result;
     }

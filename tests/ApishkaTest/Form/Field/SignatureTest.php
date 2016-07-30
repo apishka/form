@@ -131,6 +131,8 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test value
+     *
+     * @backupGlobals enabled
      */
 
     public function testValueWithRequest()
@@ -146,5 +148,30 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
             '82abf2f6354089771876c169ef39234d',
             $field->value
         );
+    }
+
+    /**
+     * Test value with wrong request
+     *
+     * @backupGlobals enabled
+     * @expectedException Apishka\Validator\FriendlyException
+     * @expectedExceptionMessage wrong signature
+     */
+
+    public function testValueWithWrongRequest()
+    {
+        $field = $this->getField('signature');
+
+        $_REQUEST = array(
+            $field->name => 'foo',
+        );
+
+        $this->assertFalse($field->isValid());
+        $this->assertEquals(
+            'foo',
+            $field->value
+        );
+
+        throw $field->getError();
     }
 }

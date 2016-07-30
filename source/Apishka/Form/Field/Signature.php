@@ -24,6 +24,33 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
     }
 
     /**
+     * Get default validations
+     *
+     * @return array
+     */
+
+    protected function getDefaultValidations()
+    {
+        $validations = parent::getDefaultValidations();
+
+        $validations['Transform/Callback'] = array(
+            'callback' => function($value)
+            {
+                if ($this->getValue() != $value)
+                {
+                    throw new Apishka\Validator\FriendlyException(
+                        array(
+                            'message'   => 'wrong signature',
+                        )
+                    );
+                }
+            }
+        );
+
+        return $validations;
+    }
+
+    /**
      * Get name
      *
      * @return string
