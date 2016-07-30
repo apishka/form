@@ -60,7 +60,9 @@ abstract class Apishka_Form_FormAbstract
         if (!$valid)
             return false;
 
-        $this->validate();
+        $this->validate(
+            $this->toArray()
+        );
 
         return true;
     }
@@ -69,8 +71,23 @@ abstract class Apishka_Form_FormAbstract
      * Validate
      */
 
-    protected function validate()
+    protected function validate($data)
     {
+    }
+
+    /**
+     * Converts form data to array
+     *
+     * @return array
+     */
+
+    public function toArray()
+    {
+        $result = array();
+        foreach ($this->_fields as $field)
+            $result[$field->getStructureName()] = $field->value;
+
+        return $result;
     }
 
     /**
