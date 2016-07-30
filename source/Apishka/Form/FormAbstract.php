@@ -34,7 +34,7 @@ abstract class Apishka_Form_FormAbstract
 
     protected function processStructure()
     {
-        $signature = $this->processSignatureField();
+        $signature = $this->getSignatureField();
         if ($signature)
             $this->addField($signature);
     }
@@ -199,7 +199,7 @@ abstract class Apishka_Form_FormAbstract
      * @return Apishka_Form_Field_Signature
      */
 
-    protected function processSignatureField()
+    protected function getSignatureField()
     {
         return Apishka_Form_Field_Signature::apishka('signature');
     }
