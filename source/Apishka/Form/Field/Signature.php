@@ -38,7 +38,7 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
             {
                 if ($this->getValue() != $value)
                 {
-                    throw new Apishka\Validator\FriendlyException(
+                    throw Apishka\Validator\FriendlyException::apishka(
                         array(
                             'message'   => 'wrong signature',
                         )
