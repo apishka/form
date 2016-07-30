@@ -69,9 +69,11 @@ abstract class Apishka_Form_FormAbstract
 
     /**
      * Validate
+     *
+     * @param array $data
      */
 
-    protected function validate($data)
+    protected function validate(array $data)
     {
     }
 
