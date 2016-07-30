@@ -386,7 +386,7 @@ abstract class Apishka_Form_FieldAbstract
         if (array_key_exists($this->getName(), $_REQUEST))
             return $_REQUEST[$this->getName()];
 
-        return null;
+        return;
     }
 
     /**

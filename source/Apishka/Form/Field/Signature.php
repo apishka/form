@@ -34,7 +34,7 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
         $validations = parent::getDefaultValidations();
 
         $validations['Transform/Callback'] = array(
-            'callback' => function($value)
+            'callback' => function ($value)
             {
                 if ($this->getValue() != $value)
                 {
@@ -44,7 +44,7 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
                         )
                     );
                 }
-            }
+            },
         );
 
         return $validations;
