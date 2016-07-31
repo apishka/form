@@ -18,7 +18,7 @@ abstract class Apishka_Form_FormAbstract
      * @var array
      */
 
-    private $_fields = array();
+    private $_fields = null;
 
     /**
      * Validator
@@ -51,7 +51,7 @@ abstract class Apishka_Form_FormAbstract
             return false;
 
         $valid = true;
-        foreach ($this->_fields as $field)
+        foreach ($this->getFields() as $field)
         {
             if (!$field->isValid())
                 $valid = false;
@@ -86,7 +86,7 @@ abstract class Apishka_Form_FormAbstract
     public function toArray()
     {
         $result = array();
-        foreach ($this->_fields as $field)
+        foreach ($this->getFields() as $field)
             $result[$field->getStructureName()] = $field->value;
 
         return $result;
@@ -150,6 +150,8 @@ abstract class Apishka_Form_FormAbstract
 
     public function addField(Apishka_Form_FieldAbstract $field)
     {
+        $this->initializeFields();
+
         $name = $field->getStructureName();
 
         if ($this->hasField($name))
@@ -170,7 +172,7 @@ abstract class Apishka_Form_FormAbstract
 
     public function hasField($name)
     {
-        return array_key_exists($name, $this->_fields);
+        return array_key_exists($name, $this->getFields());
     }
 
     /**
@@ -183,7 +185,20 @@ abstract class Apishka_Form_FormAbstract
 
     public function getField($name)
     {
-        return $this->_fields[$name];
+        return $this->getFields()[$name];
+    }
+
+    /**
+     * Get fields
+     *
+     * @return array
+     */
+
+    public function getFields()
+    {
+        $this->initializeFields();
+
+        return $this->_fields;
     }
 
     /**
@@ -196,7 +211,26 @@ abstract class Apishka_Form_FormAbstract
 
     public function delField($name)
     {
+        $this->initializeFields();
+
         unset($this->_fields[$name]);
+
+        return $this;
+    }
+
+    /**
+     * Initialize fields
+     *
+     * @return Apishka_Form_FormAbstract this
+     */
+
+    protected function initializeFields()
+    {
+        if ($this->_fields === null)
+        {
+            $this->_fields = array();
+            $this->processStructure();
+        }
 
         return $this;
     }

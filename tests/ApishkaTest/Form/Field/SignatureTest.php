@@ -15,7 +15,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
     protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
-            ->setMockClassName('Test_Form')
+            ->setMockClassName('ApishkaTest_Form_Field_SignatureTest_Form')
             ->setMethods(['isSent'])
             ->getMock()
         ;
@@ -54,24 +54,24 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('signature_test');
 
         $this->assertEquals(
-            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
+            'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->getName()
         );
 
         $this->assertEquals(
-            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
+            'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->name
         );
 
         $field->setName('signature_test_2');
 
         $this->assertEquals(
-            'signature_test_2_779f90f06b9104daca4d454b6188a9bc',
+            'signature_test_2_46b789da4432c263f116eba8ecde5cbf',
             $field->getName()
         );
 
         $this->assertEquals(
-            'signature_test_2_779f90f06b9104daca4d454b6188a9bc',
+            'signature_test_2_46b789da4432c263f116eba8ecde5cbf',
             $field->name
         );
     }
@@ -90,7 +90,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
+            'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->getName()
         );
 
@@ -102,7 +102,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            'signature_test_8cc9791279d8571cdc35a4fbe9357a5c',
+            'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->getName()
         );
     }
@@ -119,7 +119,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('signature');
 
         $this->assertEquals(
-            '82abf2f6354089771876c169ef39234d',
+            'edfaed6b51dedc42b21d58134f1afe93',
             $field->getValue()
         );
 
@@ -140,12 +140,12 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('signature');
 
         $_REQUEST = array(
-            $field->name => '82abf2f6354089771876c169ef39234d',
+            $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
         );
 
         $this->assertTrue($field->isValid());
         $this->assertEquals(
-            '82abf2f6354089771876c169ef39234d',
+            'edfaed6b51dedc42b21d58134f1afe93',
             $field->value
         );
     }
