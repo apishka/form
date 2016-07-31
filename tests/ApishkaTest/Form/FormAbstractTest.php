@@ -26,5 +26,6 @@ class ApishkaTest_Form_FormAbstractTest extends \PHPUnit_Framework_TestCase
         $form = $this->getForm();
 
         $this->assertFalse($form->isSent());
+        $this->assertFalse($form->isValid());
     }
 }
