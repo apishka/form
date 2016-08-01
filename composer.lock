@@ -501,16 +501,16 @@
     "packages-dev": [
         {
             "name": "apishka/cs",
-            "version": "1.0.0",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apishka/cs.git",
-                "reference": "10b6780df43fda66a653df19da55603a7ae9648d"
+                "reference": "1417d865b8858a12e7c96de48dacb52f63df21d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apishka/cs/zipball/10b6780df43fda66a653df19da55603a7ae9648d",
-                "reference": "10b6780df43fda66a653df19da55603a7ae9648d",
+                "url": "https://api.github.com/repos/apishka/cs/zipball/1417d865b8858a12e7c96de48dacb52f63df21d0",
+                "reference": "1417d865b8858a12e7c96de48dacb52f63df21d0",
                 "shasum": ""
             },
             "type": "library",
@@ -528,7 +528,7 @@
                 "cs",
                 "style"
             ],
-            "time": "2015-06-06 14:33:20"
+            "time": "2016-08-01 22:30:55"
         },
         {
             "name": "doctrine/instantiator",

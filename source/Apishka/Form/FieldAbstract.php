@@ -382,7 +382,7 @@ abstract class Apishka_Form_FieldAbstract
     protected function __getErrorMessage()
     {
         if ($this->isValid())
-            return null;
+            return;
 
         return $this->getError()->getMessage();
     }
@@ -396,7 +396,7 @@ abstract class Apishka_Form_FieldAbstract
     protected function __getErrorCode()
     {
         if ($this->isValid())
-            return null;
+            return;
 
         return $this->getError()->getCode();
     }
