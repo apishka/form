@@ -2,6 +2,8 @@
 
 /**
  * Apishka form field signature
+ *
+ * @easy-extend-base
  */
 
 class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
@@ -17,7 +19,6 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
         return array_replace_recursive(
             parent::getDefaultOptions(),
             array(
-                'structure_name'    => parent::getName(),
                 'required'          => true,
             )
         );

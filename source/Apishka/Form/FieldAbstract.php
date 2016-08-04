@@ -73,9 +73,9 @@ abstract class Apishka_Form_FieldAbstract
     protected function getDefaultOptions()
     {
         return array(
-            'value'         => null,
-            'required'      => false,
-            'validations'   => array(),
+            'value'             => null,
+            'required'          => false,
+            'validations'       => array(),
         );
     }
 
@@ -120,7 +120,12 @@ abstract class Apishka_Form_FieldAbstract
 
     public function setName($name)
     {
-        return $this->setOption('name', (string) $name);
+        if (!$this->hasOption('structure_name') || !$this->getOption('structure_name'))
+            $this->setOption('structure_name', (string) $name);
+
+        return $this
+            ->setOption('name', (string) $name)
+        ;
     }
 
     /**
@@ -166,7 +171,7 @@ abstract class Apishka_Form_FieldAbstract
 
     public function getStructureName()
     {
-        if (!$this->getOption('structure_name'))
+        if (!$this->hasOption('structure_name'))
             return $this->getName();
 
         return $this->getOption('structure_name');
@@ -492,5 +497,18 @@ abstract class Apishka_Form_FieldAbstract
     protected function getOption($name)
     {
         return $this->_options[$name];
+    }
+
+    /**
+     * Has option
+     *
+     * @param string $name
+     *
+     * @return bool
+     */
+
+    protected function hasOption($name)
+    {
+        return array_key_exists($name, $this->_options);
     }
 }
