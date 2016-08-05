@@ -290,7 +290,7 @@ abstract class Apishka_Form_FieldAbstract
                 $this->getMergedValidations()
             );
         }
-        catch (\Apishka\Validator\Exception $e)
+        catch (\Apishka\Transformer\Exception $e)
         {
             return $this->setError($e)->getValueFromRequest();
         }
@@ -370,7 +370,7 @@ abstract class Apishka_Form_FieldAbstract
     /**
      * Get error
      *
-     * @return \Apishka\Validator\Exception
+     * @return \Apishka\Transformer\Exception
      */
 
     public function getError()
@@ -409,12 +409,12 @@ abstract class Apishka_Form_FieldAbstract
     /**
      * Set error
      *
-     * @param \Apishka\Validator\Exception $exception
+     * @param \Apishka\Transformer\Exception $exception
      *
      * @return Apishka_Form_FieldAbstract
      */
 
-    public function setError(\Apishka\Validator\Exception $exception)
+    public function setError(\Apishka\Transformer\Exception $exception)
     {
         $this->_error = $exception;
 

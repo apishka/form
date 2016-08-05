@@ -23,7 +23,7 @@ abstract class Apishka_Form_FormAbstract
     /**
      * Validator
      *
-     * @var \Apishka\Validator\Validator
+     * @var \Apishka\Transformer\Validator
      */
 
     private $_validator = null;
@@ -129,13 +129,13 @@ abstract class Apishka_Form_FormAbstract
     /**
      * Get validator
      *
-     * @return \Apishka\Validator\Validator
+     * @return \Apishka\Transformer\Validator
      */
 
     public function getValidator()
     {
         if ($this->_validator === null)
-            $this->_validator = \Apishka\Validator\Validator::apishka();
+            $this->_validator = \Apishka\Transformer\Validator::apishka();
 
         return $this->_validator;
     }

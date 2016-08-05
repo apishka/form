@@ -110,7 +110,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
     /**
      * Test value with empty request
      *
-     * @expectedException Apishka\Validator\FriendlyException
+     * @expectedException Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
 
@@ -154,7 +154,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
      * Test value with wrong request
      *
      * @backupGlobals enabled
-     * @expectedException Apishka\Validator\FriendlyException
+     * @expectedException Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage wrong signature
      */
 
