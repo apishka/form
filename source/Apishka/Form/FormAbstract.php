@@ -13,6 +13,22 @@ abstract class Apishka_Form_FormAbstract
     use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 
     /**
+     * Global error key
+     *
+     * @type string
+     */
+
+    const GLOBAL_ERROR_KEY = '#structure';
+
+    /**
+     * Form error
+     *
+     * @var Throwable
+     */
+
+    private $_error = null;
+
+    /**
      * Fields
      *
      * @var array
@@ -51,18 +67,18 @@ abstract class Apishka_Form_FormAbstract
             return false;
 
         $valid = true;
-        foreach ($this->getFields() as $field)
-        {
-            if (!$field->isValid())
-                $valid = false;
-        }
-
-        if (!$valid)
+        if ($this->getFieldErrors())
             return false;
 
         $this->validate(
             $this->toArray()
         );
+
+        if ($this->getFieldErrors())
+            return false;
+
+        if ($this->getError())
+            return false;
 
         return true;
     }
@@ -266,5 +282,119 @@ abstract class Apishka_Form_FormAbstract
     public function getSignatureParams()
     {
         return array();
+    }
+
+    /**
+     * Draw
+     *
+     * @param string $tpl
+     * @param array  $params
+     * @param bool   $ajax
+     * @param array  $result
+     *
+     * @return mixed|null
+     */
+
+    public function draw($tpl, array $params, $ajax = false, $result = array())
+    {
+        if ($ajax && $this->isSent())
+            return $this->getArrayResponse($result);
+
+        $this->drawTpl($tpl, $params);
+    }
+
+    /**
+     * Get array response
+     *
+     * @param array $result
+     *
+     * @return array
+     */
+
+    protected function getArrayResponse($result)
+    {
+        if (!is_array($result))
+            $result = array();
+
+        $result['valid'] = $this->isValid();
+
+        if (!$this->isValid())
+        {
+            $result['errors'] = array();
+            foreach ($this->getFieldErrors() as $name => $error)
+                $result['errors'][$name] = $this->getFieldError($name, $error);
+
+            if ($this->getError() !== null)
+            {
+                $result['errors'][self::GLOBAL_ERROR_KEY] = $this->getFieldError(
+                    static::GLOBAL_ERROR_KEY,
+                    $this->getError()
+                );
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get field error data
+     *
+     * @param string    $field_name
+     * @param Throwable $exception
+     *
+     * @return array
+     */
+
+    protected function getFieldError($field_name, $exception)
+    {
+        return array(
+            'field'     => $name,
+            'code'      => $exception->getCode(),
+            'message'   => $exception->getMessage(),
+        );
+    }
+
+    /**
+     * Get field errors
+     *
+     * @return array
+     */
+
+    protected function getFieldErrors()
+    {
+        $errors = array();
+        foreach ($this->getFields() as $field)
+        {
+            if (!$field->isValid())
+                $errors[$field->structure_name] = $field->getError();
+        }
+
+        return $errors;
+    }
+
+    /**
+     * Set error
+     *
+     * @param Throwable $exception
+     *
+     * @return Apishka_Form_FormAbstract
+     */
+
+    public function setError(Throwable $exception)
+    {
+        $this->_error = $exception;
+
+        return $this;
+    }
+
+    /**
+     * Get error
+     *
+     * @return Throwable
+     */
+
+    public function getError()
+    {
+        return $this->_error;
     }
 }

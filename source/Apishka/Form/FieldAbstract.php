@@ -15,7 +15,7 @@ abstract class Apishka_Form_FieldAbstract
     /**
      * Error
      *
-     * @var Exception
+     * @var Throwable
      */
 
     private $_error = null;
@@ -409,12 +409,12 @@ abstract class Apishka_Form_FieldAbstract
     /**
      * Set error
      *
-     * @param \Apishka\Transformer\Exception $exception
+     * @param Throwable $exception
      *
      * @return Apishka_Form_FieldAbstract
      */
 
-    public function setError(\Apishka\Transformer\Exception $exception)
+    public function setError(Throwable $exception)
     {
         $this->_error = $exception;
 
