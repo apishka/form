@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d64a4142155ffdfb090e0fc564777d23",
-    "content-hash": "6835f43ce760f1c6b5ac888136a32352",
+    "hash": "dff2dfb4afa3d366747d84528c78cb08",
+    "content-hash": "9511ce3bb672b7cc44fd5f0df0310bd6",
     "packages": [
         {
             "name": "apishka/easy-extend",
@@ -65,16 +65,16 @@
         },
         {
             "name": "apishka/transformer",
-            "version": "2.0.3",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apishka/transformer.git",
-                "reference": "744d77f18dfada1348b0e21d0eecae676c80519c"
+                "reference": "fc2e062a25065d1538942b386509bf8687aa630e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apishka/transformer/zipball/744d77f18dfada1348b0e21d0eecae676c80519c",
-                "reference": "744d77f18dfada1348b0e21d0eecae676c80519c",
+                "url": "https://api.github.com/repos/apishka/transformer/zipball/fc2e062a25065d1538942b386509bf8687aa630e",
+                "reference": "fc2e062a25065d1538942b386509bf8687aa630e",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +90,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Apishka\\Validator\\": "source"
+                    "Apishka\\Transformer\\": "source"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -108,7 +108,7 @@
                 "sanitizer",
                 "validator"
             ],
-            "time": "2016-07-31 10:28:26"
+            "time": "2016-08-05 08:23:35"
         },
         {
             "name": "doctrine/lexer",
@@ -1080,16 +1080,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.4.8",
+            "version": "5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3132365e1430c091f208e120b8845d39c25f20e6"
+                "reference": "c7b3e1dcc1d183f26d5ba282881fe65c2cbb5b2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3132365e1430c091f208e120b8845d39c25f20e6",
-                "reference": "3132365e1430c091f208e120b8845d39c25f20e6",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c7b3e1dcc1d183f26d5ba282881fe65c2cbb5b2b",
+                "reference": "c7b3e1dcc1d183f26d5ba282881fe65c2cbb5b2b",
                 "shasum": ""
             },
             "require": {
@@ -1128,7 +1128,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.4.x-dev"
+                    "dev-master": "5.5.x-dev"
                 }
             },
             "autoload": {
@@ -1154,7 +1154,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-07-26 14:48:00"
+            "time": "2016-08-05 04:49:02"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
