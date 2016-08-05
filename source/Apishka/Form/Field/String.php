@@ -7,22 +7,22 @@
 class Apishka_Form_Field_String extends Apishka_Form_FieldAbstract
 {
     /**
-     * Get default validations
+     * Get default transformations
      *
      * @return array
      */
 
-    protected function getDefaultValidations()
+    protected function getDefaultTransformations()
     {
-        $validations = array();
+        $transformations = array();
 
-        $validations['Transform/Blank'] = [];
+        $transformations['Transform/Blank'] = [];
 
         if ($this->getRequired())
-            $validations['Transform/NotBlank'] = [];
+            $transformations['Transform/NotBlank'] = [];
 
-        $validations['Transform/String'] = [];
+        $transformations['Transform/String'] = [];
 
-        return $validations;
+        return $transformations;
     }
 }

@@ -25,16 +25,16 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
     }
 
     /**
-     * Get default validations
+     * Get default transformations
      *
      * @return array
      */
 
-    protected function getDefaultValidations()
+    protected function getDefaultTransformations()
     {
-        $validations = parent::getDefaultValidations();
+        $transformations = parent::getDefaultTransformations();
 
-        $validations['Transform/Callback'] = array(
+        $transformations['Transform/Callback'] = array(
             'callback' => function ($value)
             {
                 if ($this->getValue() != $value)
@@ -48,7 +48,7 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
             },
         );
 
-        return $validations;
+        return $transformations;
     }
 
     /**

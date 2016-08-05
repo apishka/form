@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dff2dfb4afa3d366747d84528c78cb08",
-    "content-hash": "9511ce3bb672b7cc44fd5f0df0310bd6",
+    "hash": "45a229db55950d3dbc3f7eea1c986a8a",
+    "content-hash": "b29c9c52d226107bd425eb92cadb57ee",
     "packages": [
         {
             "name": "apishka/easy-extend",
@@ -65,16 +65,16 @@
         },
         {
             "name": "apishka/transformer",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apishka/transformer.git",
-                "reference": "fc2e062a25065d1538942b386509bf8687aa630e"
+                "reference": "d17ccc56f8ff795221ef4d2d50cac6a5b99c3e32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apishka/transformer/zipball/fc2e062a25065d1538942b386509bf8687aa630e",
-                "reference": "fc2e062a25065d1538942b386509bf8687aa630e",
+                "url": "https://api.github.com/repos/apishka/transformer/zipball/d17ccc56f8ff795221ef4d2d50cac6a5b99c3e32",
+                "reference": "d17ccc56f8ff795221ef4d2d50cac6a5b99c3e32",
                 "shasum": ""
             },
             "require": {
@@ -108,7 +108,7 @@
                 "sanitizer",
                 "validator"
             ],
-            "time": "2016-08-05 08:23:35"
+            "time": "2016-08-05 17:24:57"
         },
         {
             "name": "doctrine/lexer",

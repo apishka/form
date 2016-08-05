@@ -75,7 +75,7 @@ abstract class Apishka_Form_FieldAbstract
         return array(
             'value'             => null,
             'required'          => false,
-            'validations'       => array(),
+            'transformations'       => array(),
         );
     }
 
@@ -231,7 +231,7 @@ abstract class Apishka_Form_FieldAbstract
 
     public function isValid()
     {
-        // triggers validations
+        // triggers transformations
         $value = $this->__getValue();
 
         return $this->getError() === null;
@@ -287,7 +287,7 @@ abstract class Apishka_Form_FieldAbstract
         {
             return $this->getForm()->getValidator()->validate(
                 $this->getValueFromRequest(),
-                $this->getMergedValidations()
+                $this->getMergedTransformations()
             );
         }
         catch (\Apishka\Transformer\Exception $e)
@@ -297,74 +297,74 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
-     * Get default validations
+     * Get default transformations
      *
      * @return array
      */
 
-    protected function getDefaultValidations()
+    protected function getDefaultTransformations()
     {
         return array();
     }
 
     /**
-     * Get merged validations
+     * Get merged transformations
      *
      * @return array
      */
 
-    protected function getMergedValidations()
+    protected function getMergedTransformations()
     {
-        $validations = $this->getValidations();
-        $validations = array_reverse($validations, true);
+        $transformations = $this->getTransformations();
+        $transformations = array_reverse($transformations, true);
 
-        $default_validations = $this->getDefaultValidations();
-        $default_validations = array_reverse($default_validations, true);
+        $default_transformations = $this->getDefaultTransformations();
+        $default_transformations = array_reverse($default_transformations, true);
 
-        $result = array_replace($default_validations, $validations);
+        $result = array_replace($default_transformations, $transformations);
         $result = array_reverse($result, true);
 
         return $result;
     }
 
     /**
-     * Set validations
+     * Set transformations
      *
      * @param mixed $validate
      *
      * @return Apishka_Form_FieldAbstract
      */
 
-    public function setValidations($validations)
+    public function setTransformations($transformations)
     {
-        return $this->setOption('validations', $validations);
+        return $this->setOption('transformations', $transformations);
     }
 
     /**
-     * Get validations
+     * Get transformations
      *
      * @return Admin_FieldAbstract this
      */
 
-    public function getValidations()
+    public function getTransformations()
     {
-        return $this->getOption('validations');
+        return $this->getOption('transformations');
     }
 
     /**
-     * Add validations
+     * Add transformations
      *
-     * @param array $validations
+     * @param array $transformations
      *
      * @return Admin_FieldAbstract this
      */
 
-    public function addValidations($validations)
+    public function addTransformations($transformations)
     {
-        $current = $this->getValidations();
-        $current += $validations;
+        $current = $this->getTransformations();
+        $current += $transformations;
 
-        return $this->setValidations($current);
+        return $this->setTransformations($current);
     }
 
     /**
