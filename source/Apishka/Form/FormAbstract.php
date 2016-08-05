@@ -355,6 +355,33 @@ abstract class Apishka_Form_FormAbstract
     }
 
     /**
+     * Set field error
+     *
+     * @param string $field
+     * @param array|string|Localizer_Translation $message
+     *
+     * @return void
+     */
+
+    protected function setFieldError($field, $message, $params, $code = 0)
+    {
+        $object = $field
+            ? $this->getField($field)
+            : $this
+        ;
+
+        $object->setError(
+            \Apishka\Transformer\FriendlyException::apishka(
+                array(
+                    'message'   => $message,
+                    'code'      => $code,
+                ),
+                $params
+            )
+        );
+    }
+
+    /**
      * Get field errors
      *
      * @return array
