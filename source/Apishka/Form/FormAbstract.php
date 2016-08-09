@@ -15,7 +15,7 @@ abstract class Apishka_Form_FormAbstract
     /**
      * Global error key
      *
-     * @type string
+     * @var string
      */
 
     const GLOBAL_ERROR_KEY = '#structure';
@@ -357,10 +357,8 @@ abstract class Apishka_Form_FormAbstract
     /**
      * Set field error
      *
-     * @param string $field
+     * @param string                             $field
      * @param array|string|Localizer_Translation $message
-     *
-     * @return void
      */
 
     protected function setFieldError($field, $message, $params, $code = 0)

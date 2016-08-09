@@ -73,10 +73,9 @@ abstract class Apishka_Form_FieldAbstract
     protected function getDefaultOptions()
     {
         return array(
-            'value'                     => null,
-            'required'                  => false,
-            'transformations_before'    => array(),
-            'transformations_after'     => array(),
+            'value'             => null,
+            'required'          => false,
+            'transformations'   => $this->getDefaultTransformations(),
         );
     }
 
@@ -288,7 +287,7 @@ abstract class Apishka_Form_FieldAbstract
         {
             return $this->getForm()->getValidator()->validate(
                 $this->getValueFromRequest(),
-                $this->getMergedTransformations()
+                $this->getTransformations()
             );
         }
         catch (\Apishka\Transformer\Exception $e)
@@ -309,32 +308,16 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
-     * Get merged transformations
-     *
-     * @return array
-     */
-
-    protected function getMergedTransformations()
-    {
-        $transformations_before  = $this->getTransformations(true);
-        $transformations_defautl = $this->getDefaultTransformations();
-        $transformations_after   = $this->getTransformations();
-
-        return $transformations_before + $transformations_defautl + $transformations_after;
-    }
-
-    /**
      * Set transformations
      *
      * @param mixed $validate
-     * @param bool  $before
      *
      * @return Apishka_Form_FieldAbstract
      */
 
-    public function setTransformations($transformations, $before = false)
+    public function setTransformations($transformations)
     {
-        return $this->setOption('transformations' . ($before ? '_before': '_after'), $transformations);
+        return $this->setOption('transformations', $transformations);
     }
 
     /**
@@ -345,26 +328,46 @@ abstract class Apishka_Form_FieldAbstract
      * @return Admin_FieldAbstract this
      */
 
-    public function getTransformations($before = false)
+    public function getTransformations()
     {
-        return $this->getOption('transformations' . ($before ? '_before': '_after'));
+        return $this->getOption('transformations');
     }
 
     /**
-     * Add transformations
+     * Push transformation
      *
-     * @param array $transformations
-     * @param bool  $before
+     * @param string $transformation
+     * @param array  $options
      *
      * @return Admin_FieldAbstract this
      */
 
-    public function addTransformations($transformations, $before = false)
+    public function pushTransformation($transformation, array $options = array())
     {
-        $current = $this->getTransformations($before);
-        $current += $transformations;
+        $transformations = $this->getTransformations();
+        $transformations[$transformation] = $options;
 
-        return $this->setTransformations($current, $before);
+        return $this->setTransformations($transformations);
+    }
+
+    /**
+     * Unshift transformation
+     *
+     * @param string $transformation
+     * @param array  $options
+     *
+     * @return Admin_FieldAbstract this
+     */
+
+    public function unshiftTransformation($transformation, array $options = array())
+    {
+        return $this->setTransformations(
+            array(
+                $transformation => $options,
+            )
+            +
+            $this->getTransformations()
+        );
     }
 
     /**
