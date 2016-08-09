@@ -359,6 +359,8 @@ abstract class Apishka_Form_FormAbstract
      *
      * @param string                             $field
      * @param array|string|Localizer_Translation $message
+     * @param array                              $params
+     * @param int                                $code
      */
 
     protected function setFieldError($field, $message, $params, $code = 0)
@@ -369,13 +371,28 @@ abstract class Apishka_Form_FormAbstract
         ;
 
         $object->setError(
-            \Apishka\Transformer\FriendlyException::apishka(
-                array(
-                    'message'   => $message,
-                    'code'      => $code,
-                ),
-                $params
-            )
+            $this->getFieldException($message, $code, $params)
+        );
+    }
+
+    /**
+     * Get field exception
+     *
+     * @param array|string|Localizer_Translation $message
+     * @param array                              $params
+     * @param int                                $code
+     *
+     * @return Throwable
+     */
+
+    protected function getFieldException($message, $params, $code = 0)
+    {
+        return \Apishka\Transformer\FriendlyException::apishka(
+            array(
+                'message'   => $message,
+                'code'      => $code,
+            ),
+            $params
         );
     }
 
