@@ -17,10 +17,7 @@ class Apishka_Form_Field_String extends Apishka_Form_FieldAbstract
         $transformations = array();
 
         $transformations['Transform/Blank'] = [];
-
-        if ($this->getRequired())
-            $transformations['Transform/NotBlank'] = [];
-
+        $transformations['Transform/NotBlank'] = ['condition' => function() {return $this->getRequired();}];
         $transformations['Transform/String'] = [];
 
         return $transformations;
