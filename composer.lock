@@ -166,16 +166,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "19811e00829958f06d9bfbfeb0d0e6b7aaff3767"
+                "reference": "30562b69fc6c8e9740645877a98063b3842204b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/19811e00829958f06d9bfbfeb0d0e6b7aaff3767",
-                "reference": "19811e00829958f06d9bfbfeb0d0e6b7aaff3767",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/30562b69fc6c8e9740645877a98063b3842204b2",
+                "reference": "30562b69fc6c8e9740645877a98063b3842204b2",
                 "shasum": ""
             },
             "require": {
@@ -186,6 +186,9 @@
                 "dominicsayers/isemail": "dev-master",
                 "phpunit/phpunit": "^4.8.0",
                 "satooshi/php-coveralls": "dev-master"
+            },
+            "suggest": {
+                "ext/php-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
             },
             "type": "library",
             "extra": {
@@ -216,7 +219,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2016-07-12 13:22:10"
+            "time": "2016-08-07 21:18:59"
         },
         {
             "name": "nesbot/carbon",
