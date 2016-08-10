@@ -322,7 +322,7 @@ abstract class Apishka_Form_FormAbstract
         {
             $result['errors'] = array();
             foreach ($this->getFieldErrors() as $name => $error)
-                $result['errors'][$name] = $this->getFieldError($name, $error);
+                $result['errors'][$name] = $this->getFieldError($this->getField($name)->name, $error);
 
             if ($this->getError() !== null)
             {
@@ -348,7 +348,7 @@ abstract class Apishka_Form_FormAbstract
     protected function getFieldError($field_name, $exception)
     {
         return array(
-            'field'     => $name,
+            'field'     => $field_name,
             'code'      => $exception->getCode(),
             'message'   => $exception->getMessage(),
         );
