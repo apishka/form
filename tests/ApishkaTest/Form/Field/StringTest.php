@@ -120,4 +120,32 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
             $field->value
         );
     }
+
+    /**
+     * Test not required
+     */
+
+    public function testNotRequired()
+    {
+        $field = $this->getField('string_field');
+
+        $this->assertTrue($field->isValid());
+    }
+
+    /**
+     * Test not required
+     *
+     * @expectedException \Apishka\Transformer\FriendlyException
+     * @expectedExceptionMessage cannot be empty
+     */
+
+    public function testRequired()
+    {
+        $field = $this->getField('string_field');
+        $field->setRequired(true);
+
+        $this->assertFalse($field->isValid());
+
+        throw $field->getError();
+    }
 }
