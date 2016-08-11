@@ -130,6 +130,7 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('string_field');
 
         $this->assertTrue($field->isValid());
+        $this->assertNull($field->value);
     }
 
     /**
@@ -147,5 +148,21 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($field->isValid());
 
         throw $field->getError();
+    }
+
+    /**
+     * Test blank value
+     */
+
+    public function testBlankValue()
+    {
+        $field = $this->getField('string_field');
+
+        $_REQUEST = array(
+            $field->name => '',
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertNull($field->value);
     }
 }
