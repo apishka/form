@@ -155,7 +155,7 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test not required
+     * Test required
      *
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty

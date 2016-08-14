@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Form string field test
+ * Apishka test form field bool test
  */
 
-class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Get form
@@ -15,7 +15,7 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
     protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
-            ->setMockClassName('ApishkaTest_Form_Field_StringTest_Form')
+            ->setMockClassName('ApishkaTest_Form_Field_BoolTest_Form')
             ->setMethods(['isSent'])
             ->getMock()
         ;
@@ -39,7 +39,7 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
 
     protected function getField($name, $is_sent = true)
     {
-        $field = Apishka_Form_Field_String::apishka($name);
+        $field = Apishka_Form_Field_Bool::apishka($name);
         $field->initialize($this->getForm($is_sent));
 
         return $field;
@@ -51,37 +51,37 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
 
     public function testName()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
 
         $this->assertEquals(
-            'string_field',
+            'bool_field',
             $field->getName()
         );
 
         $this->assertEquals(
-            'string_field',
+            'bool_field',
             $field->name
         );
 
         $this->assertEquals(
-            'string_field',
+            'bool_field',
             $field->getStructureName()
         );
 
-        $field->setName('string_field_2');
+        $field->setName('bool_field_2');
 
         $this->assertEquals(
-            'string_field_2',
+            'bool_field_2',
             $field->getName()
         );
 
         $this->assertEquals(
-            'string_field_2',
+            'bool_field_2',
             $field->name
         );
 
         $this->assertEquals(
-            'string_field',
+            'bool_field',
             $field->getStructureName()
         );
     }
@@ -92,7 +92,7 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
 
     public function testValueWithEmptyRequest()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
 
         $this->assertNull($field->getValue());
 
@@ -106,9 +106,9 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
      * @backupGlobals enabled
      */
 
-    public function testValueWithRequest()
+    public function testValueWithInvalidRequest()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
 
         $_REQUEST = array(
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
@@ -116,8 +116,29 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($field->isValid());
         $this->assertEquals(
-            'edfaed6b51dedc42b21d58134f1afe93',
+            1,
             $field->value
+        );
+    }
+
+    /**
+     * Test value
+     *
+     * @backupGlobals enabled
+     */
+
+    public function testValueWithRequest()
+    {
+        $field = $this->getField('bool_field');
+
+        $_REQUEST = array(
+            $field->name => '100',
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertEquals(
+            1,
+            $field->isValid()
         );
     }
 
@@ -127,14 +148,14 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
 
     public function testNotRequired()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
     }
 
     /**
-     * Test required
+     * Test not required
      *
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
@@ -142,7 +163,7 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
 
     public function testRequired()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
         $field->setRequired(true);
 
         $this->assertFalse($field->isValid());
@@ -152,13 +173,11 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test blank value
-     *
-     * @backupGlobals enabled
      */
 
     public function testBlankValue()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
 
         $_REQUEST = array(
             $field->name => '',
@@ -175,11 +194,11 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
     public function testDefaultValue()
     {
         $field = $this->getField('string_field');
-        $field->setDefault('default_value');
+        $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
         $this->assertEquals(
-            'default_value',
+            1,
             $field->value
         );
     }
@@ -193,7 +212,7 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
     public function testDefaultValueWithBlankRequest()
     {
         $field = $this->getField('string_field');
-        $field->setDefault('default_value');
+        $field->setDefault(1);
 
         $_REQUEST = array(
             $field->name => '',
@@ -215,7 +234,7 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('string_field');
         $field->setRequired(true);
-        $field->setDefault('default_value');
+        $field->setDefault(1);
 
         $_REQUEST = array(
             $field->name => '',
@@ -233,11 +252,11 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
     public function testDefaultValueForNonSentForm()
     {
         $field = $this->getField('string_field', false);
-        $field->setDefault('default_value');
+        $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
         $this->assertEquals(
-            'default_value',
+            1,
             $field->value
         );
     }
