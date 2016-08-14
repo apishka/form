@@ -186,4 +186,78 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
     }
+
+    /**
+     * Test default value
+     */
+
+    public function testDefaultValue()
+    {
+        $field = $this->getField('string_field');
+        $field->setDefault(1);
+
+        $this->assertTrue($field->isValid());
+        $this->assertEquals(
+            1,
+            $field->value
+        );
+    }
+
+    /**
+     * Test default value with blank request
+     *
+     * @backupGlobals enabled
+     */
+
+    public function testDefaultValueWithBlankRequest()
+    {
+        $field = $this->getField('string_field');
+        $field->setDefault(1);
+
+        $_REQUEST = array(
+            $field->name => '',
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertNull($field->value);
+    }
+
+    /**
+     * Test default required value with blank request
+     *
+     * @backupGlobals enabled
+     * @expectedException \Apishka\Transformer\FriendlyException
+     * @expectedExceptionMessage cannot be empty
+     */
+
+    public function testDefaultRequiredValueWithBlankRequest()
+    {
+        $field = $this->getField('string_field');
+        $field->setRequired(true);
+        $field->setDefault(1);
+
+        $_REQUEST = array(
+            $field->name => '',
+        );
+
+        $this->assertFalse($field->isValid());
+
+        throw $field->getError();
+    }
+
+    /**
+     * Test default value for non sent form
+     */
+
+    public function testDefaultValueForNonSentForm()
+    {
+        $field = $this->getField('string_field', false);
+        $field->setDefault(1);
+
+        $this->assertTrue($field->isValid());
+        $this->assertEquals(
+            1,
+            $field->value
+        );
+    }
 }

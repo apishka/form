@@ -74,6 +74,7 @@ abstract class Apishka_Form_FieldAbstract
     {
         return array(
             'value'             => null,
+            'default_value'     => null,
             'required'          => false,
             'transformations'   => $this->getDefaultTransformations(),
         );
@@ -238,7 +239,7 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
-     * Set default
+     * Set value
      *
      * @param mixed $value
      *
@@ -272,7 +273,42 @@ abstract class Apishka_Form_FieldAbstract
         if ($this->getForm()->isSent())
             return $this->validate();
 
-        return $this->getValue();
+        return $this->getValue() ?? $this->getDefault();
+    }
+
+    /**
+     * Set default
+     *
+     * @param mixed $value
+     *
+     * @return Apishka_Form_FieldAbstract this
+     */
+
+    public function setDefault($value)
+    {
+        return $this->setOption('default_value', $value);
+    }
+
+    /**
+     * Get value
+     *
+     * @return mixed
+     */
+
+    public function getDefault()
+    {
+        return $this->getOption('default_value');
+    }
+
+    /**
+     * Get value
+     *
+     * @return mixed
+     */
+
+    protected function __getDefault()
+    {
+        return $this->getDefault();
     }
 
     /**
@@ -435,7 +471,7 @@ abstract class Apishka_Form_FieldAbstract
         if (array_key_exists($this->getName(), $_REQUEST))
             return $_REQUEST[$this->getName()];
 
-        return;
+        return $this->getDefault();
     }
 
     /**
