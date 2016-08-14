@@ -75,4 +75,13 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
             serialize($this->getForm()->getSignatureParams())
         );
     }
+
+    /**
+     * Set default
+     */
+
+    public function setDefault($value)
+    {
+        throw new LogicException('signature field not supports default values');
+    }
 }

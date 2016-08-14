@@ -174,4 +174,17 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
 
         throw $field->getError();
     }
+
+    /**
+     * Test set default
+     *
+     * @expectedException LogicException
+     * @expectedExceptionMessage signature field not supports default values
+     */
+
+    public function testSetDefault()
+    {
+        $field = $this->getField('signature');
+        $field->setDefault('test');
+    }
 }
