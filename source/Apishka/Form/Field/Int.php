@@ -19,6 +19,7 @@ class Apishka_Form_Field_Int extends Apishka_Form_FieldAbstract
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired();}];
         $transformations['Transform/Int'] = [];
+        $transformations['Transform/ArrayKeyExists'] = ['condition' => function () {return $this->getValues() !== null;}, 'values' => function () {return $this->__getValues();}];
 
         return $transformations;
     }

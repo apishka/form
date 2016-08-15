@@ -241,4 +241,92 @@ class ApishkaTest_Form_Field_StringTest extends \PHPUnit_Framework_TestCase
             $field->value
         );
     }
+
+    /**
+     * Test good values
+     *
+     * @dataProvider  goodValuesProvider
+     * @backupGlobals enabled
+     *
+     * @param mixed $value
+     * @param array $values
+     */
+
+    public function testGoodValues($value, $values)
+    {
+        $field = $this->getField('string_field')
+            ->setValues($values)
+        ;
+
+        $_REQUEST = array(
+            $field->name => $value,
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertEquals(
+            $value,
+            $field->value
+        );
+    }
+
+    /**
+     * Good data provider
+     *
+     * @return array
+     */
+
+    public function goodValuesProvider()
+    {
+        return array(
+            array(1, ['1' => 'test']),
+            array(-1, ['-1' => 'test']),
+            array(true, ['1' => 'test']),
+            array('1', function () {return array(1 => 123);}),
+        );
+    }
+
+    /**
+     * Test good values
+     *
+     * @dataProvider             badValuesProvider
+     * @backupGlobals            enabled
+     * @expectedException        \Apishka\Transformer\Exception
+     * @expectedExceptionMessage wrong input format
+     *
+     * @param mixed $value
+     * @param array $values
+     */
+
+    public function testBadValues($value, $values)
+    {
+        $field = $this->getField('string_field')
+            ->setValues($values)
+        ;
+
+        $_REQUEST = array(
+            $field->name => $value,
+        );
+
+        $this->assertFalse($field->isValid());
+
+        throw $field->getError();
+    }
+
+    /**
+     * Good data provider
+     *
+     * @return array
+     */
+
+    public function badValuesProvider()
+    {
+        return array(
+            array(1, ['test' => 'test']),
+            array(1.2, ['test' => 'test']),
+            array(true, ['test' => 'test']),
+            array('test', ['test1' => 'test1']),
+            array(function () {}, ['test' => 'test']),
+            array(new \StdClass(), ['test' => 'test']),
+        );
+    }
 }

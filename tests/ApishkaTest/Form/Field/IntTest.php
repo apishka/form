@@ -173,6 +173,8 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test blank value
+     *
+     * @backupGlobals enabled
      */
 
     public function testBlankValue()
@@ -193,7 +195,7 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultValue()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('int_field');
         $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
@@ -211,7 +213,7 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultValueWithBlankRequest()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('int_field');
         $field->setDefault(1);
 
         $_REQUEST = array(
@@ -225,14 +227,14 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
     /**
      * Test default required value with blank request
      *
-     * @backupGlobals enabled
-     * @expectedException \Apishka\Transformer\FriendlyException
+     * @backupGlobals            enabled
+     * @expectedException        \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
 
     public function testDefaultRequiredValueWithBlankRequest()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('int_field');
         $field->setRequired(true);
         $field->setDefault(1);
 
@@ -251,13 +253,101 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultValueForNonSentForm()
     {
-        $field = $this->getField('string_field', false);
-        $field->setDefault(1);
+        $field = $this->getField('int_field', false);
+        $field->setDefault(100);
 
         $this->assertTrue($field->isValid());
         $this->assertEquals(
-            1,
+            100,
             $field->value
+        );
+    }
+
+    /**
+     * Test good values
+     *
+     * @dataProvider  goodValuesProvider
+     * @backupGlobals enabled
+     *
+     * @param mixed $value
+     * @param array $values
+     */
+
+    public function testGoodValues($value, $values)
+    {
+        $field = $this->getField('int_field')
+            ->setValues($values)
+        ;
+
+        $_REQUEST = array(
+            $field->name => $value,
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertEquals(
+            $value,
+            $field->value
+        );
+    }
+
+    /**
+     * Good data provider
+     *
+     * @return array
+     */
+
+    public function goodValuesProvider()
+    {
+        return array(
+            array(1, ['1' => 'test']),
+            array(-1, ['-1' => 'test']),
+            array(true, ['1' => 'test']),
+            array('1', function () {return array(1 => 123);}),
+        );
+    }
+
+    /**
+     * Test good values
+     *
+     * @dataProvider             badValuesProvider
+     * @backupGlobals            enabled
+     * @expectedException        \Apishka\Transformer\Exception
+     * @expectedExceptionMessage wrong input format
+     *
+     * @param mixed $value
+     * @param array $values
+     */
+
+    public function testBadValues($value, $values)
+    {
+        $field = $this->getField('int_field')
+            ->setValues($values)
+        ;
+
+        $_REQUEST = array(
+            $field->name => $value,
+        );
+
+        $this->assertFalse($field->isValid());
+
+        throw $field->getError();
+    }
+
+    /**
+     * Good data provider
+     *
+     * @return array
+     */
+
+    public function badValuesProvider()
+    {
+        return array(
+            array(1, ['test' => 'test']),
+            array(1.2, ['test' => 'test']),
+            array(true, ['test' => 'test']),
+            array('test', ['test1' => 'test1']),
+            array(function () {}, ['test' => 'test']),
+            array(new \StdClass(), ['test' => 'test']),
         );
     }
 }

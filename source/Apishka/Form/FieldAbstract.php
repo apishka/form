@@ -37,6 +37,14 @@ abstract class Apishka_Form_FieldAbstract
     private $_options = array();
 
     /**
+     * Values
+     *
+     * @var array
+     */
+
+    private $_values = null;
+
+    /**
      * Construct
      */
 
@@ -74,6 +82,7 @@ abstract class Apishka_Form_FieldAbstract
     {
         return array(
             'value'             => null,
+            'values'            => null,
             'default_value'     => null,
             'required'          => false,
             'transformations'   => $this->getDefaultTransformations(),
@@ -484,6 +493,12 @@ abstract class Apishka_Form_FieldAbstract
 
     public function setValues($values)
     {
+        if (!is_array($values) && !($values instanceof \Closure))
+            throw new \UnexpectedValueException();
+
+        // Restore cached values
+        $this->_values = null;
+
         return $this->setOption('values', $values);
     }
 
@@ -506,7 +521,14 @@ abstract class Apishka_Form_FieldAbstract
 
     protected function __getValues()
     {
-        return $this->getValues();
+        if (is_array($this->getValues()))
+            return $this->getValues();
+
+        // Set up cached values
+        if ($this->_values === null)
+            $this->_values = call_user_func($this->getValues());
+
+        return $this->_values;
     }
 
     /**

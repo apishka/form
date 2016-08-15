@@ -266,4 +266,3 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         );
     }
 }
-
