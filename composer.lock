@@ -65,16 +65,16 @@
         },
         {
             "name": "apishka/transformer",
-            "version": "3.0.5",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apishka/transformer.git",
-                "reference": "c342eeb913e69a95aa424882712f682b890fb0f6"
+                "reference": "328ab08f5dee58607f33324825755f07fe42bced"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apishka/transformer/zipball/c342eeb913e69a95aa424882712f682b890fb0f6",
-                "reference": "c342eeb913e69a95aa424882712f682b890fb0f6",
+                "url": "https://api.github.com/repos/apishka/transformer/zipball/328ab08f5dee58607f33324825755f07fe42bced",
+                "reference": "328ab08f5dee58607f33324825755f07fe42bced",
                 "shasum": ""
             },
             "require": {
@@ -84,8 +84,12 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "apishka/cs": "~1.0.0",
+                "apishka/cs": "^1.0.0",
+                "giggsey/libphonenumber-for-php": "^7.0.0",
                 "phpunit/phpunit": "^5.1.4"
+            },
+            "suggest": {
+                "giggsey/libphonenumber-for-php": "To use \\Apishka\\Transformer\\Transform\\Phone"
             },
             "type": "library",
             "autoload": {
@@ -108,7 +112,7 @@
                 "sanitizer",
                 "validator"
             ],
-            "time": "2016-08-16 08:57:23"
+            "time": "2016-08-16 09:43:33"
         },
         {
             "name": "doctrine/lexer",

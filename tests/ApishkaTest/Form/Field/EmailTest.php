@@ -322,8 +322,6 @@ class ApishkaTest_Form_Field_EmailTest extends \PHPUnit_Framework_TestCase
             array(1.2, ['test' => 'test']),
             array(true, ['test' => 'test']),
             array('test', ['test1' => 'test1']),
-            array(function () {}, ['test' => 'test']),
-            array(new \StdClass(), ['test' => 'test']),
         );
     }
 }
