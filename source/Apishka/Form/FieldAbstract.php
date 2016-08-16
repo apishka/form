@@ -37,6 +37,22 @@ abstract class Apishka_Form_FieldAbstract
     private $_options = array();
 
     /**
+     * Value
+     *
+     * @var mixed
+     */
+
+    private $_value = null;
+
+    /**
+     * Value validated
+     *
+     * @var bool
+     */
+
+    private $_value_validated = false;
+
+    /**
      * Values
      *
      * @var array
@@ -279,8 +295,10 @@ abstract class Apishka_Form_FieldAbstract
 
     public function isValid()
     {
-        // triggers transformations
-        $value = $this->__getValue();
+        if (!$this->getForm()->isSent())
+            return true;
+
+        $this->validate();
 
         return $this->getError() === null;
     }
@@ -366,17 +384,26 @@ abstract class Apishka_Form_FieldAbstract
 
     protected function validate()
     {
-        try
+        if (!$this->_value_validated)
         {
-            return $this->getForm()->getValidator()->validate(
-                $this->getValueFromRequest(),
-                $this->getTransformations()
-            );
+            try
+            {
+                $this->_value = $this->getForm()->getValidator()->validate(
+                    $this->getValueFromRequest(),
+                    $this->getTransformations()
+                );
+            }
+            catch (\Apishka\Transformer\Exception $e)
+            {
+                $this->_value = $this->setError($e)->getValueFromRequest();
+            }
+            finally
+            {
+                $this->_value_validated = true;
+            }
         }
-        catch (\Apishka\Transformer\Exception $e)
-        {
-            return $this->setError($e)->getValueFromRequest();
-        }
+
+        return $this->_value;
     }
 
     /**
