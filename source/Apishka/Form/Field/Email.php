@@ -18,6 +18,8 @@ class Apishka_Form_Field_Email extends Apishka_Form_FieldAbstract
 
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired();}];
+        $transformations['Transform/Trim'] = [];
+        $transformations['Transform/Lower'] = [];
         $transformations['Transform/Email'] = [];
 
         return $transformations;
