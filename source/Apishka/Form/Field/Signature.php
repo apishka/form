@@ -63,6 +63,20 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
     }
 
     /**
+     * Get ID
+     *
+     * @return string
+     */
+
+    public function getId()
+    {
+        if ($this->getId())
+            return $this->getId();
+
+        return parent::getName() . '_' . md5(parent::getName() . $this->getForm()->getUniqueId());
+    }
+
+    /**
      * Get value
      *
      * @return string

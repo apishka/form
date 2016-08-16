@@ -161,6 +161,44 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Set ID
+     *
+     * @param string $id
+     *
+     * @return Apishka_Form_FieldAbstract this
+     */
+
+    public function setId($id)
+    {
+        return $this->setOption('id', $id);
+    }
+
+    /**
+     * Get ID
+     *
+     * @return string
+     */
+
+    public function getId()
+    {
+        return $this->getOption('id');
+    }
+
+    /**
+     * Get ID
+     *
+     * @return string
+     */
+
+    protected function __getId()
+    {
+        if ($this->getId())
+            return $this->getId();
+
+        return $this->getName() . '_' . md5($this->getName() . $this->getForm()->getUniqueId());
+    }
+
+    /**
      * Set structure name
      *
      * @param string $name
