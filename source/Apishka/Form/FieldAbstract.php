@@ -595,6 +595,9 @@ abstract class Apishka_Form_FieldAbstract
 
     protected function getOption($name)
     {
+        if (!$this->hasOption($name))
+            return;
+
         return $this->_options[$name];
     }
 
