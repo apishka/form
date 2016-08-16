@@ -65,16 +65,16 @@
         },
         {
             "name": "apishka/transformer",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apishka/transformer.git",
-                "reference": "bb26be139c6868c7eddbc87691ecbf51f7b1cf48"
+                "reference": "c342eeb913e69a95aa424882712f682b890fb0f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apishka/transformer/zipball/bb26be139c6868c7eddbc87691ecbf51f7b1cf48",
-                "reference": "bb26be139c6868c7eddbc87691ecbf51f7b1cf48",
+                "url": "https://api.github.com/repos/apishka/transformer/zipball/c342eeb913e69a95aa424882712f682b890fb0f6",
+                "reference": "c342eeb913e69a95aa424882712f682b890fb0f6",
                 "shasum": ""
             },
             "require": {
@@ -108,7 +108,7 @@
                 "sanitizer",
                 "validator"
             ],
-            "time": "2016-08-15 22:09:58"
+            "time": "2016-08-16 08:57:23"
         },
         {
             "name": "doctrine/lexer",
