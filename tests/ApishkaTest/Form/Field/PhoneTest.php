@@ -281,7 +281,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('+79161234567', ['+79161234567' => 'Eugene Reich']),
-            array('79161234567', ['+79161234567' => 'Eugene Reich']),
         );
     }
 
