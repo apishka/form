@@ -157,6 +157,33 @@ abstract class Apishka_Form_FormAbstract
     }
 
     /**
+     * Set values
+     *
+     * @param array $values
+     * @param bool  $ignore
+     *
+     * @return Apishka_Form_FormAbstract this
+     */
+
+    public function setValues($values, $ignore = false)
+    {
+        foreach ($values as $field => $value)
+        {
+            if (!$this->hasField($field))
+            {
+                if ($ignore)
+                    continue;
+
+                throw new Exception('Field ' . var_export($field, true) . ' not found in structure');
+            }
+
+            $this->getField($field)->setValue($value);
+        }
+
+        return $this;
+    }
+
+    /**
      * Add
      *
      * @param Apishka_Form_FieldAbstract $field
