@@ -173,6 +173,8 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test blank value
+     *
+     * @backupGlobals enabled
      */
 
     public function testBlankValue()
@@ -193,7 +195,7 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultValue()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
         $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
@@ -211,7 +213,7 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultValueWithBlankRequest()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
         $field->setDefault(1);
 
         $_REQUEST = array(
@@ -232,7 +234,7 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultRequiredValueWithBlankRequest()
     {
-        $field = $this->getField('string_field');
+        $field = $this->getField('bool_field');
         $field->setRequired(true);
         $field->setDefault(1);
 
@@ -251,11 +253,92 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultValueForNonSentForm()
     {
-        $field = $this->getField('string_field', false);
+        $field = $this->getField('bool_field', false);
         $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
         $this->assertEquals(
+            1,
+            $field->value
+        );
+    }
+
+    /**
+     * Test set values
+     *
+     * @backupGlobals enabled
+     */
+
+    public function testSetValues()
+    {
+        $field = $this->getField('bool_field');
+        $field->setValues(
+            array(
+                0 => 'No',
+                1 => 'Yes',
+            )
+        );
+
+        $_REQUEST = array(
+            $field->name => 1,
+        );
+
+        $this->assertSame(
+            array(
+                0 => 'No',
+                1 => 'Yes',
+            ),
+            $field->getValues()
+        );
+
+        $this->assertSame(
+            array(
+                0 => 'No',
+                1 => 'Yes',
+            ),
+            $field->values
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertSame(
+            1,
+            $field->value
+        );
+    }
+
+    /**
+     * Test set values callback
+     *
+     * @backupGlobals enabled
+     */
+
+    public function testSetValuesCallback()
+    {
+        $field = $this->getField('bool_field');
+        $field->setValues(
+            function()
+            {
+                return array(
+                    0 => 'No',
+                    1 => 'Yes',
+                );
+            }
+        );
+
+        $_REQUEST = array(
+            $field->name => 1,
+        );
+
+        $this->assertSame(
+            array(
+                0 => 'No',
+                1 => 'Yes',
+            ),
+            $field->values
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertSame(
             1,
             $field->value
         );
