@@ -478,6 +478,6 @@ abstract class Apishka_Form_FormAbstract
 
     public function processValues(array $values, $field)
     {
-        return $value;
+        return $values;
     }
 }
