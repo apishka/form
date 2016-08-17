@@ -593,7 +593,7 @@ abstract class Apishka_Form_FieldAbstract
                 : call_user_func($this->getValues())
             ;
 
-            $this->getForm()->processValues($this->_values, $this);
+            $this->_values = $this->getForm()->processValues($this->_values, $this);
         }
 
         return $this->_values;
