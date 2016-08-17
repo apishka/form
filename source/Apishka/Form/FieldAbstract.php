@@ -586,12 +586,15 @@ abstract class Apishka_Form_FieldAbstract
 
     protected function __getValues()
     {
-        if (is_array($this->getValues()))
-            return $this->getValues();
-
-        // Set up cached values
         if ($this->_values === null)
-            $this->_values = call_user_func($this->getValues());
+        {
+            $this->_values = is_array($this->getValues())
+                ? $this->getValues()
+                : call_user_func($this->getValues())
+            ;
+
+            $this->getForm()->processValues($this->_values, $this);
+        }
 
         return $this->_values;
     }

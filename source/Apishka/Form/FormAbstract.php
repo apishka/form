@@ -466,4 +466,18 @@ abstract class Apishka_Form_FormAbstract
     {
         return $this->_error;
     }
+
+    /**
+     * Process values
+     *
+     * @param array                      $values
+     * @param Apishka_Form_FieldAbstract $field
+     *
+     * @return array
+     */
+
+    public function processValues(array $values, $field)
+    {
+        return $value;
+    }
 }
