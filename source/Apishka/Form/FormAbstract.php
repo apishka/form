@@ -416,7 +416,7 @@ abstract class Apishka_Form_FormAbstract
         ;
 
         $object->setError(
-            $this->getFieldException($message, $code, $params)
+            $this->getFieldException($message, $params, $code)
         );
     }
 
