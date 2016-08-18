@@ -408,7 +408,7 @@ abstract class Apishka_Form_FormAbstract
      * @param int                                $code
      */
 
-    protected function setFieldError($field, $message, $params, $code = 0)
+    protected function setFieldError($field, $message, array $params = array(), $code = 0)
     {
         $object = $field
             ? $this->getField($field)
@@ -430,7 +430,7 @@ abstract class Apishka_Form_FormAbstract
      * @return Throwable
      */
 
-    protected function getFieldException($message, $params, $code = 0)
+    protected function getFieldException($message, array $params = array(), $code = 0)
     {
         return \Apishka\Transformer\FriendlyException::apishka(
             array(
