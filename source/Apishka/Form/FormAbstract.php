@@ -37,6 +37,14 @@ abstract class Apishka_Form_FormAbstract
     private $_fields = null;
 
     /**
+     * Is valid
+     *
+     * @var bool
+     */
+
+    private $_is_valid = null;
+
+    /**
      * Validator
      *
      * @var \Apishka\Transformer\Validator
@@ -63,24 +71,34 @@ abstract class Apishka_Form_FormAbstract
 
     public function isValid()
     {
-        if (!$this->isSent())
-            return false;
+        if ($this->_is_valid === null)
+        {
+            $this->_is_valid = false;
 
-        $valid = true;
-        if ($this->getFieldErrors())
-            return false;
+            do
+            {
+                if (!$this->isSent())
+                    break;
 
-        $this->validate(
-            $this->toArray()
-        );
+                if ($this->getFieldErrors())
+                    break;
 
-        if ($this->getFieldErrors())
-            return false;
+                $this->validate(
+                    $this->toArray()
+                );
 
-        if ($this->getError())
-            return false;
+                if ($this->getFieldErrors())
+                    break;
 
-        return true;
+                if ($this->getError())
+                    break;
+
+                $this->_is_valid = true;
+            }
+            while (false);
+        }
+
+        return $this->_is_valid;
     }
 
     /**
