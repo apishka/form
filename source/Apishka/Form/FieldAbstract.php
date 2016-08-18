@@ -426,10 +426,10 @@ abstract class Apishka_Form_FieldAbstract
      * @return mixed
      */
 
-    protected function runValidations()
+    public function runValidations($value = null)
     {
         return $this->getForm()->getValidator()->validate(
-            $this->getValueFromRequest(),
+            $value ?? $this->getValueFromRequest(),
             $this->getTransformations()
         );
     }
