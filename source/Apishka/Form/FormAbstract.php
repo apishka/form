@@ -161,6 +161,26 @@ abstract class Apishka_Form_FormAbstract
     }
 
     /**
+     * Isset
+     *
+     * @param string $name
+     *
+     * @return bool
+     */
+
+    public function __isset($name)
+    {
+        $method = '__get' . $name;
+        if (method_exists($this, $method))
+            return true;
+
+        if ($this->hasField($name))
+            return true;
+
+        return false;
+    }
+
+    /**
      * Get validator
      *
      * @return \Apishka\Transformer\Validator

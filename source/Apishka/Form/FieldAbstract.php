@@ -137,6 +137,23 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Isset
+     *
+     * @param string $name
+     *
+     * @return bool
+     */
+
+    public function __isset($name)
+    {
+        $method = '__get' . $name;
+        if (method_exists($this, $method))
+            return true;
+
+        return false;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -388,10 +405,7 @@ abstract class Apishka_Form_FieldAbstract
         {
             try
             {
-                $this->_value = $this->getForm()->getValidator()->validate(
-                    $this->getValueFromRequest(),
-                    $this->getTransformations()
-                );
+                $this->_value = $this->runValidations();
             }
             catch (\Apishka\Transformer\Exception $e)
             {
@@ -404,6 +418,20 @@ abstract class Apishka_Form_FieldAbstract
         }
 
         return $this->_value;
+    }
+
+    /**
+     * Run validations
+     *
+     * @return mixed
+     */
+
+    protected function runValidations()
+    {
+        return $this->getForm()->getValidator()->validate(
+            $this->getValueFromRequest(),
+            $this->getTransformations()
+        );
     }
 
     /**
