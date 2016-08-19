@@ -61,6 +61,14 @@ abstract class Apishka_Form_FieldAbstract
     private $_values = null;
 
     /**
+     * Is initialized
+     *
+     * @var bool
+     */
+
+    private $_is_initialized = false;
+
+    /**
      * Construct
      */
 
@@ -74,6 +82,32 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Call static element
+     *
+     * @param array  $data
+     * @param string $name
+     * @param array  $arguments
+     *
+     * @return mixed
+     */
+
+    protected static function __apishkaElement(array $data, $name, array $arguments)
+    {
+        return new $data['class']('element');
+    }
+
+    /**
+     * Returns static prefixes
+     *
+     * @return string
+     */
+
+    public function __apishkaGetPrefixes()
+    {
+        return 'apishka|element';
+    }
+
+    /**
      * Initialize
      *
      * @param Apishka_Form_FormAbstract $form
@@ -83,9 +117,21 @@ abstract class Apishka_Form_FieldAbstract
 
     public function initialize(Apishka_Form_FormAbstract $form)
     {
+        $this->_is_initialized = true;
         $this->_form = $form;
 
         return $this;
+    }
+
+    /**
+     * Get is initialized
+     *
+     * @return bool
+     */
+
+    public function isInitialized()
+    {
+        return $this->_is_initialized;
     }
 
     /**

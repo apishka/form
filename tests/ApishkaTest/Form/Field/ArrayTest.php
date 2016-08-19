@@ -329,4 +329,37 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
             array(new \StdClass(), ['test' => 'test']),
         );
     }
+
+    /**
+     * Test element good values
+     *
+     * @backupGlobals enabled
+     */
+
+    public function testElementGoodValues()
+    {
+        $field = $this->getField('array_field')
+            ->setElement(
+                Apishka_Form_Field_Int::element()
+            )
+        ;
+
+        $_REQUEST = array(
+            $field->name => array(
+                '1',
+                '2',
+                '5',
+            )
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertSame(
+            array(
+                1,
+                2,
+                5,
+            ),
+            $field->value
+        );
+    }
 }

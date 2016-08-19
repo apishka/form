@@ -42,6 +42,27 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
     }
 
     /**
+     * Initialize
+     *
+     * @param Apishka_Form_FormAbstract $form
+     *
+     * @return Admin_ElementAbstract this
+     */
+
+    public function initialize(Apishka_Form_FormAbstract $form)
+    {
+        parent::initialize($form);
+
+        if ($this->getElement())
+            $this->getElement()->initialize($form);
+
+        if ($this->getElementKey())
+            $this->getElementKey()->initialize($form);
+
+        return $this;
+    }
+
+    /**
      * Set sub-field
      *
      * @param Apishka_Form_FieldAbstract $field
@@ -51,6 +72,9 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
 
     public function setElement(Apishka_Form_FieldAbstract $field)
     {
+        if ($this->isInitialized())
+            $field->initialize($this->getForm());
+
         return $this->setOption('element_value', $field);
     }
 
@@ -75,6 +99,9 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
 
     public function setElementKey(Apishka_Form_FieldAbstract $field)
     {
+        if ($this->isInitialized())
+            $field->initialize($this->getForm());
+
         return $this->setOption('element_key', $field);
     }
 
