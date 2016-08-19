@@ -37,6 +37,7 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired();}];
         $transformations['Transform/Array'] = [];
+        $transformations['Transform/ArrayIntersect'] = ['condition' => function () {return $this->getValues() !== null;}, 'values' => function () {return array_keys($this->__getValues());}];
 
         return $transformations;
     }

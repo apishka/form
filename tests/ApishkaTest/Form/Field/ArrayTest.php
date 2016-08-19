@@ -321,10 +321,10 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
     public function badValuesProvider()
     {
         return array(
-            array(1, ['test' => 'test']),
-            array(1.2, ['test' => 'test']),
-            array(true, ['test' => 'test']),
-            array('test', ['test1' => 'test1']),
+            array(array(1), ['test' => 'test']),
+            array(array(1.2), ['test' => 'test']),
+            array(array(true), ['test' => 'test']),
+            array(array('test'), ['test1' => 'test1']),
             array(function () {}, ['test' => 'test']),
             array(new \StdClass(), ['test' => 'test']),
         );
