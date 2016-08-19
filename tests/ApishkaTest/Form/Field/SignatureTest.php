@@ -53,24 +53,24 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('signature_test');
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->name
         );
 
         $field->setName('signature_test_2');
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test_2_46b789da4432c263f116eba8ecde5cbf',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test_2_46b789da4432c263f116eba8ecde5cbf',
             $field->name
         );
@@ -84,24 +84,24 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('signature_test');
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test',
             $field->getStructureName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->getName()
         );
 
         $field->setStructureName('signature_test_2');
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test_2',
             $field->getStructureName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'signature_test_dbfa21668cfb0bd4794172328e0eccc8',
             $field->getName()
         );
@@ -118,7 +118,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('signature');
 
-        $this->assertEquals(
+        $this->assertSame(
             'edfaed6b51dedc42b21d58134f1afe93',
             $field->getValue()
         );
@@ -144,7 +144,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             'edfaed6b51dedc42b21d58134f1afe93',
             $field->value
         );
@@ -167,7 +167,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertFalse($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             'foo',
             $field->value
         );

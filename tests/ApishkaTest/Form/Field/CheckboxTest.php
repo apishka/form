@@ -53,34 +53,34 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('checkbox_field');
 
-        $this->assertEquals(
+        $this->assertSame(
             'checkbox_field',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'checkbox_field',
             $field->name
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'checkbox_field',
             $field->getStructureName()
         );
 
         $field->setName('checkbox_field_2');
 
-        $this->assertEquals(
+        $this->assertSame(
             'checkbox_field_2',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'checkbox_field_2',
             $field->name
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'checkbox_field',
             $field->getStructureName()
         );
@@ -97,7 +97,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($field->getValue());
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             0,
             $field->value
         );
@@ -118,7 +118,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $field->value
         );
@@ -139,9 +139,9 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
-            $field->isValid()
+            $field->value
         );
     }
 
@@ -154,7 +154,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('checkbox_field');
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             0,
             $field->value
         );
@@ -170,7 +170,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         $field->setRequired(true);
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             0,
             $field->value
         );
@@ -202,7 +202,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $field->value
         );
@@ -260,7 +260,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $field->value
         );

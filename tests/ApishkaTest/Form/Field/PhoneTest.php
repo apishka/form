@@ -55,34 +55,34 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('phone_field');
 
-        $this->assertEquals(
+        $this->assertSame(
             'phone_field',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'phone_field',
             $field->name
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'phone_field',
             $field->getStructureName()
         );
 
         $field->setName('phone_field_2');
 
-        $this->assertEquals(
+        $this->assertSame(
             'phone_field_2',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'phone_field_2',
             $field->name
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'phone_field',
             $field->getStructureName()
         );
@@ -117,7 +117,7 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             '+79161234567',
             $field->value
         );
@@ -180,7 +180,7 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit_Framework_TestCase
         $field->setDefault('+79161234567');
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             '+79161234567',
             $field->value
         );
@@ -238,7 +238,7 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit_Framework_TestCase
         $field->setDefault('default_value');
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             'default_value',
             $field->value
         );
@@ -265,7 +265,7 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             $value,
             $field->value
         );

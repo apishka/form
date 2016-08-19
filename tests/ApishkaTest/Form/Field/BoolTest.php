@@ -53,34 +53,34 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('bool_field');
 
-        $this->assertEquals(
+        $this->assertSame(
             'bool_field',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'bool_field',
             $field->name
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'bool_field',
             $field->getStructureName()
         );
 
         $field->setName('bool_field_2');
 
-        $this->assertEquals(
+        $this->assertSame(
             'bool_field_2',
             $field->getName()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'bool_field_2',
             $field->name
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'bool_field',
             $field->getStructureName()
         );
@@ -115,7 +115,7 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $field->value
         );
@@ -136,9 +136,9 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
-            $field->isValid()
+            $field->value
         );
     }
 
@@ -199,7 +199,7 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
         $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $field->value
         );
@@ -257,7 +257,7 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
         $field->setDefault(1);
 
         $this->assertTrue($field->isValid());
-        $this->assertEquals(
+        $this->assertSame(
             1,
             $field->value
         );
