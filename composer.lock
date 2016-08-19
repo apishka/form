@@ -65,16 +65,16 @@
         },
         {
             "name": "apishka/transformer",
-            "version": "3.0.9",
+            "version": "3.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apishka/transformer.git",
-                "reference": "be2556f7d5e8b8516292de7a92113eec22a27035"
+                "reference": "b894c52836012b250c408c6b832cca1a69d41f18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apishka/transformer/zipball/be2556f7d5e8b8516292de7a92113eec22a27035",
-                "reference": "be2556f7d5e8b8516292de7a92113eec22a27035",
+                "url": "https://api.github.com/repos/apishka/transformer/zipball/b894c52836012b250c408c6b832cca1a69d41f18",
+                "reference": "b894c52836012b250c408c6b832cca1a69d41f18",
                 "shasum": ""
             },
             "require": {
@@ -112,7 +112,7 @@
                 "sanitizer",
                 "validator"
             ],
-            "time": "2016-08-16 13:04:03"
+            "time": "2016-08-19 19:04:30"
         },
         {
             "name": "doctrine/lexer",
@@ -508,16 +508,16 @@
     "packages-dev": [
         {
             "name": "apishka/cs",
-            "version": "1.0.5",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apishka/cs.git",
-                "reference": "54abe967ea05df8406d3b7e8bf06c7663879b556"
+                "reference": "03929716a47b2f3723e45c836010a73711336d5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apishka/cs/zipball/54abe967ea05df8406d3b7e8bf06c7663879b556",
-                "reference": "54abe967ea05df8406d3b7e8bf06c7663879b556",
+                "url": "https://api.github.com/repos/apishka/cs/zipball/03929716a47b2f3723e45c836010a73711336d5b",
+                "reference": "03929716a47b2f3723e45c836010a73711336d5b",
                 "shasum": ""
             },
             "type": "library",
@@ -535,7 +535,7 @@
                 "cs",
                 "style"
             ],
-            "time": "2016-08-02 07:36:17"
+            "time": "2016-08-19 19:25:43"
         },
         {
             "name": "doctrine/instantiator",
