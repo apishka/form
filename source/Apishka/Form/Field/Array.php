@@ -75,7 +75,7 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
 
     public function setElementKey(Apishka_Form_FieldAbstract $field)
     {
-        return $this->setOption('element_value', $field);
+        return $this->setOption('element_key', $field);
     }
 
     /**
@@ -86,7 +86,7 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
 
     public function getElementKey()
     {
-        return $this->getOption('element_value');
+        return $this->getOption('element_key');
     }
 
     /**
