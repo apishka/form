@@ -316,7 +316,7 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('bool_field');
         $field->setValues(
-            function()
+            function ()
             {
                 return array(
                     0 => 'No',

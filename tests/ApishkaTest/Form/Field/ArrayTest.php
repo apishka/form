@@ -116,7 +116,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
-            array(1,2,3),
+            array(1, 2, 3),
             $field->value
         );
     }
@@ -349,7 +349,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
                 '1',
                 '2',
                 '5',
-            )
+            ),
         );
 
         $this->assertTrue($field->isValid());
