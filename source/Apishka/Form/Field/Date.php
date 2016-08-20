@@ -4,7 +4,7 @@
  * Apishka form field date
  */
 
-class Apishka_Form_Field_Date extends Apishka_Form_FieldAbstract
+class Apishka_Form_Field_Date extends Apishka_Form_Field_DateTimeAbstract
 {
     /**
      * Get default transformations

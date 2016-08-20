@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Apishka form field date
+ * Apishka form field time
  */
 
-class Apishka_Form_Field_DateTime extends Apishka_Form_Field_DateTimeAbstract
+class Apishka_Form_Field_Time extends Apishka_Form_Field_DateTimeAbstract
 {
     /**
      * Get default transformations
@@ -18,7 +18,7 @@ class Apishka_Form_Field_DateTime extends Apishka_Form_Field_DateTimeAbstract
 
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired();}];
-        $transformations['Transform/DateTime'] = [];
+        $transformations['Transform/Time'] = [];
         $transformations['Transform/ArrayKeyExists'] = ['condition' => function () {return $this->getValues() !== null;}, 'values' => function () {return $this->__getValues();}];
 
         return $transformations;
