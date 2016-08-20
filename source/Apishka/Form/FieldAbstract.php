@@ -535,6 +535,22 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Del transformation
+     *
+     * @param string $transformation
+     *
+     * @return Apishka_Form_FieldAbstract this
+     */
+
+    public function delTransformation($transformation)
+    {
+        $transformations = $this->getTransformations();
+        unset($transformations[$transformation]);
+
+        return $this->setTransformations($transformations);
+    }
+
+    /**
      * Unshift transformation
      *
      * @param string $transformation
