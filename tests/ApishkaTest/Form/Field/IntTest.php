@@ -350,4 +350,32 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
             array(new \StdClass(), ['test' => 'test']),
         );
     }
+
+    /**
+     * Test request getter
+     *
+     * @backupGlobals            enabled
+     */
+
+    public function testRequestGetter()
+    {
+        $field = $this->getField('int_field')
+            ->setRequestGetter(
+                function()
+                {
+                    return 100;
+                }
+            )
+        ;
+
+        $_REQUEST = array(
+            $field->name => 200,
+        );
+
+        $this->assertTrue($field->isValid());
+        $this->assertSame(
+            (int) 100,
+            $field->value
+        );
+    }
 }

@@ -632,6 +632,15 @@ abstract class Apishka_Form_FieldAbstract
 
     public function getValueFromRequest()
     {
+        $func = $this->getRequestGetter();
+        if ($func)
+        {
+            if ($func instanceof \Closure)
+                return $func();
+
+            throw new UnexpectedValueException('Option request_getter is not function');
+        }
+
         if (array_key_exists($this->getName(), $_REQUEST))
             return $_REQUEST[$this->getName()];
 
@@ -687,6 +696,30 @@ abstract class Apishka_Form_FieldAbstract
         }
 
         return $this->_values;
+    }
+
+    /**
+     * Set request getter
+     *
+     * @param mixed $getter
+     *
+     * @return Apishka_Form_FieldAbstract
+     */
+
+    public function setRequestGetter($getter)
+    {
+        return $this->setOption('request_getter', $getter);
+    }
+
+    /**
+     * Get request getter
+     *
+     * @return mixed
+     */
+
+    public function getRequestGetter()
+    {
+        return $this->getOption('request_getter');
     }
 
     /**
