@@ -369,6 +369,15 @@ abstract class Apishka_Form_FormAbstract
     }
 
     /**
+     * Draw tpl
+     *
+     * @param string $tpl
+     * @param array $params
+     */
+
+    abstract function drawTpl($tpl, array $params);
+
+    /**
      * Get array response
      *
      * @param array $result
