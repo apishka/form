@@ -16,13 +16,18 @@ class ApishkaTest_Form_Field_UriTest extends \PHPUnit_Framework_TestCase
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
             ->setMockClassName('ApishkaTest_Form_Field_UriTest_Form')
-            ->setMethods(['isSent'])
+            ->setMethods(['isSent', 'drawTpl'])
             ->getMock()
         ;
 
         $stub->expects($this->any())
             ->method('isSent')
             ->will($this->returnValue($is_sent))
+        ;
+
+        $stub->expects($this->any())
+            ->method('drawTpl')
+            ->willReturn(null)
         ;
 
         return $stub;

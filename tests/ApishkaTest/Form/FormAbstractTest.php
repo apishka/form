@@ -14,7 +14,18 @@ class ApishkaTest_Form_FormAbstractTest extends \PHPUnit_Framework_TestCase
 
     protected function getForm()
     {
-        return $this->getMockForAbstractClass('Apishka_Form_FormAbstract');
+        $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
+            ->setMockClassName('ApishkaTest_Form_Field_TestForm')
+            ->setMethods(['drawTpl'])
+            ->getMock()
+        ;
+
+        $stub->expects($this->any())
+            ->method('drawTpl')
+            ->willReturn(null)
+        ;
+
+        return $stub;
     }
 
     /**
