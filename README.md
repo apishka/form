@@ -1,8 +1,6 @@
 # Simple form usage
 
 ```php
-<?php
-
 class MyForm extends Apishka_Form_FormAbstract
 {
     /**
@@ -32,7 +30,6 @@ class MyForm extends Apishka_Form_FormAbstract
 # Basic field usage
 Each field has functions to manipulate
 ```php
-<?php
 $field = Apishka_Form_Field_String::apishka('field_name')
     // By default all fields have unique ID, but if you want to
     // set some specific
