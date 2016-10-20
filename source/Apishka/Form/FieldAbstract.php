@@ -636,7 +636,7 @@ abstract class Apishka_Form_FieldAbstract
         if ($func)
         {
             if ($func instanceof \Closure)
-                return $func();
+                return $func($this);
 
             throw new UnexpectedValueException('Option request_getter is not function');
         }
