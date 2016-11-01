@@ -118,7 +118,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('checkbox_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
         );
 
@@ -139,7 +139,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('checkbox_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '100',
         );
 
@@ -189,7 +189,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('checkbox_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -224,7 +224,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('string_field');
         $field->setDefault(1);
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -246,7 +246,7 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
         $field->setRequired(true);
         $field->setDefault(1);
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 

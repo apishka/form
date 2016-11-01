@@ -115,7 +115,7 @@ class ApishkaTest_Form_Field_DateTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('date_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '1986-03-10',
         );
 
@@ -165,7 +165,7 @@ class ApishkaTest_Form_Field_DateTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('date_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -200,7 +200,7 @@ class ApishkaTest_Form_Field_DateTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('date_field');
         $field->setDefault('1986-03-10');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -222,7 +222,7 @@ class ApishkaTest_Form_Field_DateTest extends \PHPUnit_Framework_TestCase
         $field->setRequired(true);
         $field->setDefault('default_value');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -263,7 +263,7 @@ class ApishkaTest_Form_Field_DateTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 
@@ -306,7 +306,7 @@ class ApishkaTest_Form_Field_DateTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 

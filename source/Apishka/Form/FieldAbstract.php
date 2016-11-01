@@ -641,8 +641,11 @@ abstract class Apishka_Form_FieldAbstract
             throw new UnexpectedValueException('Option request_getter is not function');
         }
 
-        if (array_key_exists($this->getName(), $_REQUEST))
-            return $_REQUEST[$this->getName()];
+        if (array_key_exists($this->getName(), $_POST))
+            return $_POST[$this->getName()];
+
+        if (array_key_exists($this->getName(), $_GET))
+            return $_GET[$this->getName()];
 
         return $this->getDefault();
     }

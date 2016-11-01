@@ -144,7 +144,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('signature');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
         );
 
@@ -167,7 +167,7 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('signature');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => 'foo',
         );
 

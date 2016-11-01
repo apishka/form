@@ -115,7 +115,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('array_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => array(1,2,3),
         );
 
@@ -165,7 +165,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('array_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -200,7 +200,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('array_field');
         $field->setDefault(array(1));
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -222,7 +222,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
         $field->setRequired(true);
         $field->setDefault('default_value');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -263,7 +263,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 
@@ -308,7 +308,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 
@@ -349,7 +349,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
             )
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => array(
                 '1',
                 '2',

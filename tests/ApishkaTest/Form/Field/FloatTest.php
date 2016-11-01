@@ -117,7 +117,7 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('float_filed');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
         );
 
@@ -136,7 +136,7 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('float_filed');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '100.1',
         );
 
@@ -186,7 +186,7 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('float_filed');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -221,7 +221,7 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('float_filed');
         $field->setDefault(1);
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -243,7 +243,7 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
         $field->setRequired(true);
         $field->setDefault(1);
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -284,7 +284,7 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 
@@ -329,7 +329,7 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 

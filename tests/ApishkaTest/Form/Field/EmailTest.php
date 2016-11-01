@@ -115,7 +115,7 @@ class ApishkaTest_Form_Field_EmailTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('email_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => 'eugene.reich@gmail.com',
         );
 
@@ -165,7 +165,7 @@ class ApishkaTest_Form_Field_EmailTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('email_field');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -200,7 +200,7 @@ class ApishkaTest_Form_Field_EmailTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('email_field');
         $field->setDefault('default_value');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -222,7 +222,7 @@ class ApishkaTest_Form_Field_EmailTest extends \PHPUnit_Framework_TestCase
         $field->setRequired(true);
         $field->setDefault('default_value');
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => '',
         );
 
@@ -263,7 +263,7 @@ class ApishkaTest_Form_Field_EmailTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 
@@ -305,7 +305,7 @@ class ApishkaTest_Form_Field_EmailTest extends \PHPUnit_Framework_TestCase
             ->setValues($values)
         ;
 
-        $_REQUEST = array(
+        $_POST = array(
             $field->name => $value,
         );
 
