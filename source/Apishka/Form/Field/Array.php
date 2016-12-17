@@ -120,8 +120,9 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
     /**
      * Run validations
      *
+     * @param null|mixed $value
+     *
      * @return mixed
-     * @param  null|mixed $value
      */
 
     public function runValidations($value = null)

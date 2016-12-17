@@ -92,6 +92,7 @@ class Apishka_Form_Field_Signature extends Apishka_Form_Field_String
 
     /**
      * Set default
+     *
      * @param mixed $value
      */
 

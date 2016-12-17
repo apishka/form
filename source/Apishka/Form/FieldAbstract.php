@@ -70,6 +70,7 @@ abstract class Apishka_Form_FieldAbstract
 
     /**
      * Construct
+     *
      * @param mixed $name
      */
 
@@ -470,8 +471,9 @@ abstract class Apishka_Form_FieldAbstract
     /**
      * Run validations
      *
+     * @param null|mixed $value
+     *
      * @return mixed
-     * @param  null|mixed $value
      */
 
     public function runValidations($value = null)
