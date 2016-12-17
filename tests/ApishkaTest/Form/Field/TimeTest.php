@@ -284,7 +284,7 @@ class ApishkaTest_Form_Field_TimeTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('10:11:12', ['10:11:12' => 'test']),
-            array('10:11:12', function () {return array('10:11:12' => 123);}),
+            array('10:11:12', function () {return array('10:11:12' => 123); }),
         );
     }
 

@@ -284,7 +284,7 @@ class ApishkaTest_Form_Field_DateTimeTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('1986-03-10 10:11:12', ['1986-03-10 10:11:12' => 'test']),
-            array('1986-03-10 10:11:12', function () {return array('1986-03-10 10:11:12' => 123);}),
+            array('1986-03-10 10:11:12', function () {return array('1986-03-10 10:11:12' => 123); }),
         );
     }
 

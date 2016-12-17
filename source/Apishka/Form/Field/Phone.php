@@ -17,9 +17,9 @@ class Apishka_Form_Field_Phone extends Apishka_Form_FieldAbstract
         $transformations = array();
 
         $transformations['Transform/Blank'] = [];
-        $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired();}];
+        $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired(); }];
         $transformations['Transform/Trim'] = [];
-        $transformations['Transform/Phone'] = ['country_code' => function () {return $this->getCountryCode();}];
+        $transformations['Transform/Phone'] = ['country_code' => function () {return $this->getCountryCode(); }];
 
         return $transformations;
     }

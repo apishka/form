@@ -17,7 +17,7 @@ class Apishka_Form_Field_Uri extends Apishka_Form_FieldAbstract
         $transformations = array();
 
         $transformations['Transform/Blank'] = [];
-        $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired();}];
+        $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired(); }];
         $transformations['Transform/Trim'] = [];
         $transformations['Transform/Uri'] = [];
 

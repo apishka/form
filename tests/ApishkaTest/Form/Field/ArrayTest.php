@@ -116,7 +116,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
         $field = $this->getField('array_field');
 
         $_POST = array(
-            $field->name => array(1,2,3),
+            $field->name => array(1, 2, 3),
         );
 
         $this->assertTrue($field->isValid());
@@ -286,7 +286,7 @@ class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
             array(array(1), ['1' => 'test', '2' => 'test2', '3' => 'test3']),
             array(array(-1), ['-1' => 'test', '-2' => 'test 2', '-3' => 'test 3']),
             array(array(true), ['1' => 'yes', '0' => 'no']),
-            array(array('1'), function () {return array(1 => 123, 2 => 345);}),
+            array(array('1'), function () {return array(1 => 123, 2 => 345); }),
         );
     }
 

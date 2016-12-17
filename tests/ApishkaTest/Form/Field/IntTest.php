@@ -307,7 +307,7 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
             array(1, ['1' => 'test']),
             array(-1, ['-1' => 'test']),
             array(true, ['1' => 'test']),
-            array('1', function () {return array(1 => 123);}),
+            array('1', function () {return array(1 => 123); }),
         );
     }
 
@@ -366,7 +366,7 @@ class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
     {
         $field = $this->getField('int_field')
             ->setRequestGetter(
-                function()
+                function ()
                 {
                     return 100;
                 }
