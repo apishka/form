@@ -61,6 +61,20 @@ abstract class Apishka_Form_FieldAbstract
     private $_values = null;
 
     /**
+     * Default
+     *
+     * @var mixed
+     */
+
+    private $_default_value = null;
+
+    /**
+     * Default value calculated
+     */
+
+    private $_default_value_calculated = false;
+
+    /**
      * Is initialized
      *
      * @var bool
@@ -417,6 +431,8 @@ abstract class Apishka_Form_FieldAbstract
 
     public function setDefault($value)
     {
+        $this->_default_value_calculated = false;
+
         return $this->setOption('default_value', $value);
     }
 
@@ -439,7 +455,18 @@ abstract class Apishka_Form_FieldAbstract
 
     protected function __getDefault()
     {
-        return $this->getDefault();
+        if (!$this->_default_value_calculated)
+        {
+            $default = $this->getDefault();
+
+            $this->_default_value_calculated = true;
+            $this->_default_value = ($default instanceof \Closure)
+                ? $default($this)
+                : $default
+            ;
+        }
+
+        return $this->_default_value;
     }
 
     /**
@@ -485,7 +512,7 @@ abstract class Apishka_Form_FieldAbstract
                 $this->setError($e);
 
                 $this->_value = $this->getUseDefaultOnError() ?? $this->getForm()->getUseDefaultOnError()
-                    ? $this->getDefault()
+                    ? $this->__getDefault()
                     : $this->getValueFromRequest()
                 ;
             }
@@ -682,7 +709,7 @@ abstract class Apishka_Form_FieldAbstract
         if (array_key_exists($this->getName(), $_GET))
             return $_GET[$this->getName()];
 
-        return $this->getDefault();
+        return $this->__getDefault();
     }
 
     /**
