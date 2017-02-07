@@ -45,12 +45,42 @@ abstract class Apishka_Form_FormAbstract
     private $_is_valid = null;
 
     /**
+     * Options
+     *
+     * @var array
+     */
+
+    private $_options = array();
+
+    /**
      * Validator
      *
      * @var \Apishka\Transformer\Validator
      */
 
     private $_validator = null;
+
+    /**
+     * Construct
+     */
+
+    public function __construct()
+    {
+        $this->_options = $this->getDefaultOptions();
+    }
+
+    /**
+     * Get default options
+     *
+     * @return array
+     */
+
+    protected function getDefaultOptions()
+    {
+        return array(
+            'use_default_on_error' => false,
+        );
+    }
 
     /**
      * Process structure
@@ -526,5 +556,74 @@ abstract class Apishka_Form_FormAbstract
     public function processValues(array $values, $field)
     {
         return $values;
+    }
+
+    /**
+     * Set use default on error
+     *
+     * @param bool $flag
+     *
+     * @return Apishka_Form_FormAbstract
+     */
+
+    public function setUseDefaultOnError($flag)
+    {
+        return $this->setOption('use_default_on_error', (bool) $flag);
+    }
+
+    /**
+     * Get use default on error
+     *
+     * @return bool
+     */
+
+    public function getUseDefaultOnError()
+    {
+        return $this->getOption('use_default_on_error');
+    }
+
+    /**
+     * Set option
+     *
+     * @param string $name
+     * @param mixed  $value
+     *
+     * @return Apishka_Form_FieldAbstract this
+     */
+
+    protected function setOption($name, $value)
+    {
+        $this->_options[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get option
+     *
+     * @param string $name
+     *
+     * @return mixed
+     */
+
+    protected function getOption($name)
+    {
+        if (!$this->hasOption($name))
+            return;
+
+        return $this->_options[$name];
+    }
+
+    /**
+     * Has option
+     *
+     * @param string $name
+     *
+     * @return bool
+     */
+
+    protected function hasOption($name)
+    {
+        return array_key_exists($name, $this->_options);
     }
 }

@@ -145,11 +145,12 @@ abstract class Apishka_Form_FieldAbstract
     protected function getDefaultOptions()
     {
         return array(
-            'value'             => null,
-            'values'            => null,
-            'default_value'     => null,
-            'required'          => false,
-            'transformations'   => $this->getDefaultTransformations(),
+            'value'                 => null,
+            'values'                => null,
+            'default_value'         => null,
+            'required'              => false,
+            'transformations'       => $this->getDefaultTransformations(),
+            'use_default_on_error'  => null,
         );
     }
 
@@ -442,6 +443,30 @@ abstract class Apishka_Form_FieldAbstract
     }
 
     /**
+     * Set use default on error
+     *
+     * @param bool|null $flag
+     *
+     * @return Apishka_Form_FieldAbstract this
+     */
+
+    public function setUseDefaultOnError($flag)
+    {
+        return $this->setOption('use_default_on_error', $flag);
+    }
+
+    /**
+     * Get use default on error
+     *
+     * @return bool|null
+     */
+
+    public function getUseDefaultOnError()
+    {
+        return $this->getOption('use_default_on_error');
+    }
+
+    /**
      * Validate
      *
      * @return mixed
@@ -457,7 +482,12 @@ abstract class Apishka_Form_FieldAbstract
             }
             catch (\Apishka\Transformer\Exception $e)
             {
-                $this->_value = $this->setError($e)->getValueFromRequest();
+                $this->setError($e);
+
+                $this->_value = $this->getUseDefaultOnError() ?? $this->getForm()->getUseDefaultOnError()
+                    ? $this->getDefault()
+                    : $this->getValueFromRequest()
+                ;
             }
             finally
             {
