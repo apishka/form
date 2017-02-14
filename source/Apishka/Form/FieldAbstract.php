@@ -380,7 +380,7 @@ abstract class Apishka_Form_FieldAbstract
 
         $this->validate();
 
-        return $this->getError() === null;
+        return !$this->hasError();
     }
 
     /**
@@ -416,7 +416,14 @@ abstract class Apishka_Form_FieldAbstract
     protected function __getValue()
     {
         if ($this->getForm()->isSent())
-            return $this->validate();
+        {
+            $value = $this->validate();
+
+            if ($this->hasError() && ($this->getUseDefaultOnError() ?? $this->getForm()->getUseDefaultOnError()))
+                return $this->getDefault();
+
+            return $value;
+        }
 
         return $this->getValue() ?? $this->getDefault();
     }
@@ -511,10 +518,7 @@ abstract class Apishka_Form_FieldAbstract
             {
                 $this->setError($e);
 
-                $this->_value = $this->getUseDefaultOnError() ?? $this->getForm()->getUseDefaultOnError()
-                    ? $this->__getDefault()
-                    : $this->getValueFromRequest()
-                ;
+                $this->_value = $this->getValueFromRequest();
             }
             finally
             {
@@ -641,6 +645,17 @@ abstract class Apishka_Form_FieldAbstract
     public function getError()
     {
         return $this->_error;
+    }
+
+    /**
+     * Has error
+     *
+     * @return bool
+     */
+
+    public function hasError()
+    {
+        return $this->_error !== null;
     }
 
     /**
