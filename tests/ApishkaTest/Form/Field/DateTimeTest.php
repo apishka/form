@@ -4,7 +4,7 @@
  * Form datetime field test
  */
 
-class ApishkaTest_Form_Field_DateTimeTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_DateTimeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

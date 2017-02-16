@@ -4,7 +4,7 @@
  * Form uri field test
  */
 
-class ApishkaTest_Form_Field_UriTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_UriTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

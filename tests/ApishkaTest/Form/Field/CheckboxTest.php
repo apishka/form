@@ -4,7 +4,7 @@
  * Apishka test form field checkbox test
  */
 
-class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

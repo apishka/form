@@ -4,7 +4,7 @@
  * Apishka test form field int test
  */
 
-class ApishkaTest_Form_Field_IntTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_IntTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

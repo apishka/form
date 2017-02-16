@@ -4,7 +4,7 @@
  * Form phone field test
  */
 
-class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

@@ -4,7 +4,7 @@
  * Array type test
  */
 
-class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

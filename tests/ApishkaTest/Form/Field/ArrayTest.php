@@ -4,7 +4,7 @@
  * Apishka test form field array test
  */
 
-class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_ArrayTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

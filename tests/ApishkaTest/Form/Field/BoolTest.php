@@ -4,7 +4,7 @@
  * Apishka test form field bool test
  */
 
-class ApishkaTest_Form_Field_BoolTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

@@ -4,7 +4,7 @@
  * Apishka test form field float test
  */
 
-class ApishkaTest_Form_Field_FloatTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form

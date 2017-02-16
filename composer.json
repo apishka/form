@@ -16,7 +16,7 @@
     },
     "require-dev": {
         "apishka/cs": "^1.0.0",
-        "phpunit/phpunit": "^5.5.0",
+        "phpunit/phpunit": "^6.0.6",
         "giggsey/libphonenumber-for-php": "^7.0.0"
     },
     "suggest": {

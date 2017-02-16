@@ -4,7 +4,7 @@
  * Apishka test form form abstract test
  */
 
-class ApishkaTest_Form_FormAbstractTest extends \PHPUnit_Framework_TestCase
+class ApishkaTest_Form_FormAbstractTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get form
