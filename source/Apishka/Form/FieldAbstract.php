@@ -2,6 +2,8 @@
 
 /**
  * Apishka form field abstract
+ *
+ * @method static static apishka(string $name)
  */
 abstract class Apishka_Form_FieldAbstract
 {
@@ -201,7 +203,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param string $name
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setName($name)
     {
@@ -238,7 +240,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param string $id
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setId($id)
     {
@@ -273,7 +275,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param string $name
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setStructureName($name)
     {
@@ -308,7 +310,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param bool $required
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setRequired($required)
     {
@@ -355,7 +357,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param mixed $value
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setValue($value)
     {
@@ -397,7 +399,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param mixed $value
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setDefault($value)
     {
@@ -442,7 +444,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param bool|null $flag
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setUseDefaultOnError($flag)
     {
@@ -530,7 +532,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param bool $before
      *
-     * @return Admin_FieldAbstract this
+     * @return $this
      */
     public function getTransformations()
     {
@@ -543,7 +545,7 @@ abstract class Apishka_Form_FieldAbstract
      * @param string $transformation
      * @param array  $options
      *
-     * @return Admin_FieldAbstract this
+     * @return $this
      */
     public function pushTransformation($transformation, array $options = [])
     {
@@ -558,7 +560,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param string $transformation
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function delTransformation($transformation)
     {
@@ -574,7 +576,7 @@ abstract class Apishka_Form_FieldAbstract
      * @param string $transformation
      * @param array  $options
      *
-     * @return Admin_FieldAbstract this
+     * @return $this
      */
     public function unshiftTransformation($transformation, array $options = [])
     {
@@ -638,7 +640,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param Throwable $exception
      *
-     * @return Apishka_Form_FieldAbstract
+     * @return $this
      */
     public function setError(Throwable $exception)
     {
@@ -677,7 +679,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param mixed $values
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setValues($values)
     {
@@ -748,7 +750,7 @@ abstract class Apishka_Form_FieldAbstract
      * @param string $name
      * @param mixed  $value
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     protected function setOption($name, $value)
     {

@@ -2,6 +2,8 @@
 
 /**
  * Apishka form form abstract
+ *
+ * @method static static apishka()
  */
 abstract class Apishka_Form_FormAbstract
 {
@@ -212,7 +214,7 @@ abstract class Apishka_Form_FormAbstract
      * @param array $values
      * @param bool  $ignore
      *
-     * @return Apishka_Form_FormAbstract this
+     * @return $this
      */
     public function setValues($values, $ignore = false)
     {
@@ -237,7 +239,7 @@ abstract class Apishka_Form_FormAbstract
      *
      * @param Apishka_Form_FieldAbstract $field
      *
-     * @return Apishka_Form_FormAbstract this
+     * @return $this
      */
     public function addField(Apishka_Form_FieldAbstract $field)
     {
@@ -294,7 +296,7 @@ abstract class Apishka_Form_FormAbstract
      *
      * @param string $name
      *
-     * @return Apishka_Form_FormAbstract this
+     * @return $this
      */
     public function delField($name)
     {
@@ -308,7 +310,7 @@ abstract class Apishka_Form_FormAbstract
     /**
      * Initialize fields
      *
-     * @return Apishka_Form_FormAbstract this
+     * @return $this
      */
     protected function initializeFields()
     {
@@ -525,7 +527,7 @@ abstract class Apishka_Form_FormAbstract
      *
      * @param bool $flag
      *
-     * @return Apishka_Form_FormAbstract
+     * @return $this
      */
     public function setUseDefaultOnError($flag)
     {
@@ -548,7 +550,7 @@ abstract class Apishka_Form_FormAbstract
      * @param string $name
      * @param mixed  $value
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     protected function setOption($name, $value)
     {
