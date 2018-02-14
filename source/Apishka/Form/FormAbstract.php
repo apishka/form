@@ -272,7 +272,7 @@ abstract class Apishka_Form_FormAbstract
      *
      * @param string $name
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function getField($name)
     {
@@ -490,7 +490,7 @@ abstract class Apishka_Form_FormAbstract
      *
      * @param Throwable $exception
      *
-     * @return Apishka_Form_FormAbstract
+     * @return $this
      */
     public function setError(Throwable $exception)
     {
