@@ -116,7 +116,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param Apishka_Form_FormAbstract $form
      *
-     * @return Admin_ElementAbstract this
+     * @return $this
      */
     public function initialize(Apishka_Form_FormAbstract $form)
     {
@@ -156,7 +156,7 @@ abstract class Apishka_Form_FieldAbstract
     /**
      * Get form
      *
-     * @return Apishka_Form_FormAbstract
+     * @return $this
      */
     protected function getForm()
     {
@@ -520,7 +520,7 @@ abstract class Apishka_Form_FieldAbstract
      * @param mixed $validate
      * @param mixed $transformations
      *
-     * @return Apishka_Form_FieldAbstract
+     * @return $this
      */
     public function setTransformations($transformations)
     {
@@ -727,7 +727,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param mixed $getter
      *
-     * @return Apishka_Form_FieldAbstract
+     * @return $this
      */
     public function setRequestGetter($getter)
     {
