@@ -2,6 +2,9 @@
 
 /**
  * Apishka form field uri
+ *
+ * @property-read string $value
+ * @property-read string $default
  */
 class Apishka_Form_Field_Uri extends Apishka_Form_FieldAbstract
 {

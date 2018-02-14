@@ -2,6 +2,9 @@
 
 /**
  * Apishka form field email
+ *
+ * @property-read string $value
+ * @property-read string $default
  */
 class Apishka_Form_Field_Email extends Apishka_Form_FieldAbstract
 {

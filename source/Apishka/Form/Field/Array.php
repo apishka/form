@@ -2,6 +2,9 @@
 
 /**
  * Apishka form field string
+ *
+ * @property-read array $value
+ * @property-read array $default
  */
 class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
 {

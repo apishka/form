@@ -3,6 +3,9 @@
 /**
  * Apishka form field checkbox
  *
+ * @property-read int $value
+ * @property-read int $default
+ *
  * @easy-extend-base
  */
 class Apishka_Form_Field_Checkbox extends Apishka_Form_Field_Bool

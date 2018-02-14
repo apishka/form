@@ -2,6 +2,9 @@
 
 /**
  * Apishka form field float
+ *
+ * @property-read float $value
+ * @property-read float $default
  */
 class Apishka_Form_Field_Float extends Apishka_Form_FieldAbstract
 {

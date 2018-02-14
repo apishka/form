@@ -2,6 +2,9 @@
 
 /**
  * Apishka form field bool
+ *
+ * @property-read int $value
+ * @property-read int $default
  */
 class Apishka_Form_Field_Bool extends Apishka_Form_FieldAbstract
 {

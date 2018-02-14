@@ -3,6 +3,14 @@
 /**
  * Apishka form field abstract
  *
+ * @property-read string $name
+ * @property-read string $id
+ * @property-read string $structure_name
+ * @property-read bool $required
+ * @property-read mixed $default
+ * @property-read mixed $value
+ * @property-read string $errorMessage
+ * @property-read int $errorCode
  * @method static static apishka(string $name)
  */
 abstract class Apishka_Form_FieldAbstract

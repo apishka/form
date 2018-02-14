@@ -2,6 +2,9 @@
 
 /**
  * Apishka form field phone
+ *
+ * @property-read string $value
+ * @property-read string $default
  */
 class Apishka_Form_Field_Phone extends Apishka_Form_FieldAbstract
 {
