@@ -3,7 +3,6 @@
 /**
  * Form phone field test
  */
-
 class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -11,7 +10,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      *
      * @param bool $is_sent
      */
-
     protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
@@ -42,7 +40,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      *
      * @return Apishka_Form_Field_Signature
      */
-
     protected function getField($name, $is_sent = true, $code = 'RU')
     {
         $field = Apishka_Form_Field_Phone::apishka($name);
@@ -55,7 +52,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
     /**
      * Test name
      */
-
     public function testName()
     {
         $field = $this->getField('phone_field');
@@ -96,7 +92,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
     /**
      * Test value with empty request
      */
-
     public function testValueWithEmptyRequest()
     {
         $field = $this->getField('phone_field');
@@ -112,14 +107,13 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testValueWithRequest()
     {
         $field = $this->getField('phone_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '+79161234567',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -131,7 +125,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
     /**
      * Test not required
      */
-
     public function testNotRequired()
     {
         $field = $this->getField('phone_field');
@@ -146,7 +139,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testRequired()
     {
         $field = $this->getField('phone_field');
@@ -162,14 +154,13 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testBlankValue()
     {
         $field = $this->getField('phone_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -178,7 +169,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value
      */
-
     public function testDefaultValue()
     {
         $field = $this->getField('phone_field');
@@ -196,15 +186,14 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testDefaultValueWithBlankRequest()
     {
         $field = $this->getField('phone_field');
         $field->setDefault('default_value');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -217,16 +206,15 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testDefaultRequiredValueWithBlankRequest()
     {
         $field = $this->getField('phone_field');
         $field->setRequired(true);
         $field->setDefault('default_value');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertFalse($field->isValid());
 
@@ -236,7 +224,6 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value for non sent form
      */
-
     public function testDefaultValueForNonSentForm()
     {
         $field = $this->getField('phone_field', false);
@@ -258,16 +245,15 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      * @param mixed $value
      * @param array $values
      */
-
     public function testGoodValues($value, $values)
     {
         $field = $this->getField('string_field')
             ->setValues($values)
         ;
 
-        $_POST = array(
+        $_POST = [
             $field->name => $value,
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -281,12 +267,11 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function goodValuesProvider()
     {
-        return array(
-            array('+79161234567', ['+79161234567' => 'Eugene Reich']),
-        );
+        return [
+            ['+79161234567', ['+79161234567' => 'Eugene Reich']],
+        ];
     }
 
     /**
@@ -300,16 +285,15 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      * @param mixed $value
      * @param array $values
      */
-
     public function testBadValues($value, $values)
     {
         $field = $this->getField('string_field')
             ->setValues($values)
         ;
 
-        $_POST = array(
+        $_POST = [
             $field->name => $value,
-        );
+        ];
 
         $this->assertFalse($field->isValid());
 
@@ -321,14 +305,13 @@ class ApishkaTest_Form_Field_PhoneTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function badValuesProvider()
     {
-        return array(
-            array(1, ['test' => 'test']),
-            array(1.2, ['test' => 'test']),
-            array(true, ['test' => 'test']),
-            array('test', ['test1' => 'test1']),
-        );
+        return [
+            [1, ['test' => 'test']],
+            [1.2, ['test' => 'test']],
+            [true, ['test' => 'test']],
+            ['test', ['test1' => 'test1']],
+        ];
     }
 }

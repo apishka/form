@@ -3,7 +3,6 @@
 /**
  * Apishka test form field bool test
  */
-
 class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -11,7 +10,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @param bool $is_sent
      */
-
     protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
@@ -41,7 +39,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @return Apishka_Form_Field_Signature
      */
-
     protected function getField($name, $is_sent = true)
     {
         $field = Apishka_Form_Field_Bool::apishka($name);
@@ -53,7 +50,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
     /**
      * Test name
      */
-
     public function testName()
     {
         $field = $this->getField('bool_field');
@@ -94,7 +90,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
     /**
      * Test value with empty request
      */
-
     public function testValueWithEmptyRequest()
     {
         $field = $this->getField('bool_field');
@@ -110,14 +105,13 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testValueWithInvalidRequest()
     {
         $field = $this->getField('bool_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -131,14 +125,13 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testValueWithRequest()
     {
         $field = $this->getField('bool_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '100',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -150,7 +143,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
     /**
      * Test not required
      */
-
     public function testNotRequired()
     {
         $field = $this->getField('bool_field');
@@ -165,7 +157,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testRequired()
     {
         $field = $this->getField('bool_field');
@@ -181,14 +172,13 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testBlankValue()
     {
         $field = $this->getField('bool_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -197,7 +187,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value
      */
-
     public function testDefaultValue()
     {
         $field = $this->getField('bool_field');
@@ -215,15 +204,14 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testDefaultValueWithBlankRequest()
     {
         $field = $this->getField('bool_field');
         $field->setDefault(1);
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -236,16 +224,15 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testDefaultRequiredValueWithBlankRequest()
     {
         $field = $this->getField('bool_field');
         $field->setRequired(true);
         $field->setDefault(1);
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertFalse($field->isValid());
 
@@ -255,7 +242,6 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value for non sent form
      */
-
     public function testDefaultValueForNonSentForm()
     {
         $field = $this->getField('bool_field', false);
@@ -273,34 +259,33 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testSetValues()
     {
         $field = $this->getField('bool_field');
         $field->setValues(
-            array(
+            [
                 0 => 'No',
                 1 => 'Yes',
-            )
+            ]
         );
 
-        $_POST = array(
+        $_POST = [
             $field->name => 1,
-        );
+        ];
 
         $this->assertSame(
-            array(
+            [
                 0 => 'No',
                 1 => 'Yes',
-            ),
+            ],
             $field->getValues()
         );
 
         $this->assertSame(
-            array(
+            [
                 0 => 'No',
                 1 => 'Yes',
-            ),
+            ],
             $field->values
         );
 
@@ -316,29 +301,28 @@ class ApishkaTest_Form_Field_BoolTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testSetValuesCallback()
     {
         $field = $this->getField('bool_field');
         $field->setValues(
             function ()
             {
-                return array(
+                return [
                     0 => 'No',
                     1 => 'Yes',
-                );
+                ];
             }
         );
 
-        $_POST = array(
+        $_POST = [
             $field->name => 1,
-        );
+        ];
 
         $this->assertSame(
-            array(
+            [
                 0 => 'No',
                 1 => 'Yes',
-            ),
+            ],
             $field->values
         );
 

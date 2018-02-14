@@ -3,7 +3,6 @@
 /**
  * Array type test
  */
-
 class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -11,7 +10,6 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
      *
      * @param bool $is_sent
      */
-
     protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
@@ -41,7 +39,6 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
      *
      * @return Apishka_Form_Field_Signature
      */
-
     protected function getField($name, $is_sent = true)
     {
         $field = Apishka_Form_Field_Signature::apishka($name);
@@ -53,7 +50,6 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
     /**
      * Test name
      */
-
     public function testName()
     {
         $field = $this->getField('signature_test');
@@ -84,7 +80,6 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
     /**
      * Test structure name
      */
-
     public function testStructureName()
     {
         $field = $this->getField('signature_test');
@@ -118,7 +113,6 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
      * @expectedException Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testValueWithEmptyRequest()
     {
         $field = $this->getField('signature');
@@ -139,14 +133,13 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testValueWithRequest()
     {
         $field = $this->getField('signature');
 
-        $_POST = array(
+        $_POST = [
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -162,14 +155,13 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
      * @expectedException Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage wrong signature
      */
-
     public function testValueWithWrongRequest()
     {
         $field = $this->getField('signature');
 
-        $_POST = array(
+        $_POST = [
             $field->name => 'foo',
-        );
+        ];
 
         $this->assertFalse($field->isValid());
         $this->assertSame(
@@ -186,7 +178,6 @@ class ApishkaTest_Form_Field_SignatureTest extends \PHPUnit\Framework\TestCase
      * @expectedException LogicException
      * @expectedExceptionMessage signature field not supports default values
      */
-
     public function testSetDefault()
     {
         $field = $this->getField('signature');

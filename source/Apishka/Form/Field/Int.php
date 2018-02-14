@@ -3,7 +3,6 @@
 /**
  * Apishka form field int
  */
-
 class Apishka_Form_Field_Int extends Apishka_Form_FieldAbstract
 {
     /**
@@ -11,10 +10,9 @@ class Apishka_Form_Field_Int extends Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     protected function getDefaultTransformations()
     {
-        $transformations = array();
+        $transformations = [];
 
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired(); }];

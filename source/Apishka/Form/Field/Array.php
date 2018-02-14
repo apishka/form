@@ -3,7 +3,6 @@
 /**
  * Apishka form field string
  */
-
 class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
 {
     /**
@@ -11,16 +10,15 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     protected function getDefaultOptions()
     {
         return array_replace(
             parent::getDefaultOptions(),
-            array(
-                'default_value' => array(),
+            [
+                'default_value' => [],
                 'element_value' => null,
                 'element_key'   => null,
-            )
+            ]
         );
     }
 
@@ -29,10 +27,9 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     protected function getDefaultTransformations()
     {
-        $transformations = array();
+        $transformations = [];
 
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired(); }];
@@ -49,7 +46,6 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return Admin_ElementAbstract this
      */
-
     public function initialize(Apishka_Form_FormAbstract $form)
     {
         parent::initialize($form);
@@ -70,7 +66,6 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_Field_Array this
      */
-
     public function setElement(Apishka_Form_FieldAbstract $field)
     {
         if ($this->isInitialized())
@@ -84,7 +79,6 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract
      */
-
     public function getElement()
     {
         return $this->getOption('element_value');
@@ -97,7 +91,6 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_Field_Array this
      */
-
     public function setElementKey(Apishka_Form_FieldAbstract $field)
     {
         if ($this->isInitialized())
@@ -111,7 +104,6 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract
      */
-
     public function getElementKey()
     {
         return $this->getOption('element_key');
@@ -124,7 +116,6 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     public function runValidations($value = null)
     {
         $value = parent::runValidations($value);
@@ -135,7 +126,7 @@ class Apishka_Form_Field_Array extends Apishka_Form_FieldAbstract
         if (!$element_key && !$element_value)
             return $value;
 
-        $result = array();
+        $result = [];
         foreach ($value as $key => $value)
         {
             $key = $element_key

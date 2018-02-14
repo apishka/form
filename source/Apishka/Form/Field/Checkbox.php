@@ -5,7 +5,6 @@
  *
  * @easy-extend-base
  */
-
 class Apishka_Form_Field_Checkbox extends Apishka_Form_Field_Bool
 {
     /**
@@ -13,14 +12,13 @@ class Apishka_Form_Field_Checkbox extends Apishka_Form_Field_Bool
      *
      * @return array
      */
-
     protected function getDefaultOptions()
     {
         return array_replace(
             parent::getDefaultOptions(),
-            array(
+            [
                 'default_value' => 0,
-            )
+            ]
         );
     }
 }

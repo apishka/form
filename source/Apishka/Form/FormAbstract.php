@@ -3,13 +3,11 @@
 /**
  * Apishka form form abstract
  */
-
 abstract class Apishka_Form_FormAbstract
 {
     /**
      * Traits
      */
-
     use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 
     /**
@@ -17,7 +15,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @var string
      */
-
     const GLOBAL_ERROR_KEY = '#structure';
 
     /**
@@ -25,7 +22,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @var Throwable
      */
-
     private $_error = null;
 
     /**
@@ -33,7 +29,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @var array
      */
-
     private $_fields = null;
 
     /**
@@ -41,7 +36,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @var bool
      */
-
     private $_is_valid = null;
 
     /**
@@ -49,21 +43,18 @@ abstract class Apishka_Form_FormAbstract
      *
      * @var array
      */
-
-    private $_options = array();
+    private $_options = [];
 
     /**
      * Validator
      *
      * @var \Apishka\Transformer\Validator
      */
-
     private $_validator = null;
 
     /**
      * Construct
      */
-
     public function __construct()
     {
         $this->_options = $this->getDefaultOptions();
@@ -74,18 +65,16 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     protected function getDefaultOptions()
     {
-        return array(
+        return [
             'use_default_on_error' => false,
-        );
+        ];
     }
 
     /**
      * Process structure
      */
-
     protected function processStructure()
     {
         $signature = $this->getSignatureField();
@@ -98,7 +87,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return bool
      */
-
     public function isValid()
     {
         if ($this->_is_valid === null)
@@ -136,7 +124,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @param array $data
      */
-
     protected function validate(array $data)
     {
     }
@@ -146,10 +133,9 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     public function toArray()
     {
-        $result = array();
+        $result = [];
         foreach ($this->getFields() as $field)
             $result[$field->getStructureName()] = $field->value;
 
@@ -161,7 +147,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return bool
      */
-
     public function isSent()
     {
         if ($this->hasField('signature'))
@@ -177,7 +162,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return mixed
      */
-
     public function __get($name)
     {
         $method = '__get' . $name;
@@ -197,7 +181,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return bool
      */
-
     public function __isset($name)
     {
         $method = '__get' . $name;
@@ -215,7 +198,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return \Apishka\Transformer\Validator
      */
-
     public function getValidator()
     {
         if ($this->_validator === null)
@@ -232,7 +214,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FormAbstract this
      */
-
     public function setValues($values, $ignore = false)
     {
         foreach ($values as $field => $value)
@@ -258,7 +239,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FormAbstract this
      */
-
     public function addField(Apishka_Form_FieldAbstract $field)
     {
         $this->initializeFields();
@@ -280,7 +260,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return bool
      */
-
     public function hasField($name)
     {
         return array_key_exists($name, $this->getFields());
@@ -293,7 +272,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function getField($name)
     {
         return $this->getFields()[$name];
@@ -304,7 +282,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     public function getFields()
     {
         $this->initializeFields();
@@ -319,7 +296,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FormAbstract this
      */
-
     public function delField($name)
     {
         $this->initializeFields();
@@ -334,12 +310,11 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FormAbstract this
      */
-
     protected function initializeFields()
     {
         if ($this->_fields === null)
         {
-            $this->_fields = array();
+            $this->_fields = [];
             $this->processStructure();
         }
 
@@ -351,7 +326,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return string
      */
-
     public function getUniqueId()
     {
         return get_class($this);
@@ -362,7 +336,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_Field_Signature
      */
-
     protected function getSignatureField()
     {
         return Apishka_Form_Field_Signature::apishka('signature');
@@ -373,10 +346,9 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     public function getSignatureParams()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -389,8 +361,7 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return mixed|null
      */
-
-    public function draw($tpl, array $params, $ajax = false, $result = array())
+    public function draw($tpl, array $params, $ajax = false, $result = [])
     {
         if ($ajax && $this->isSent())
             return $this->getArrayResponse($result);
@@ -404,7 +375,6 @@ abstract class Apishka_Form_FormAbstract
      * @param string $tpl
      * @param array  $params
      */
-
     abstract protected function drawTpl($tpl, array $params);
 
     /**
@@ -414,17 +384,16 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     protected function getArrayResponse($result)
     {
         if (!is_array($result))
-            $result = array();
+            $result = [];
 
         $result['valid'] = $this->isValid();
 
         if (!$this->isValid())
         {
-            $result['errors'] = array();
+            $result['errors'] = [];
             foreach ($this->getFieldErrors() as $name => $error)
                 $result['errors'][$name] = $this->getFieldError($this->getField($name)->name, $error);
 
@@ -448,14 +417,13 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     protected function getFieldError($field_name, $exception)
     {
-        return array(
+        return [
             'field'     => $field_name,
             'code'      => $exception->getCode(),
             'message'   => $exception->getMessage(),
-        );
+        ];
     }
 
     /**
@@ -466,8 +434,7 @@ abstract class Apishka_Form_FormAbstract
      * @param array                              $params
      * @param int                                $code
      */
-
-    protected function setFieldError($field, $message, array $params = array(), $code = 0)
+    protected function setFieldError($field, $message, array $params = [], $code = 0)
     {
         $object = $field
             ? $this->getField($field)
@@ -488,14 +455,13 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Throwable
      */
-
-    protected function getFieldException($message, array $params = array(), $code = 0)
+    protected function getFieldException($message, array $params = [], $code = 0)
     {
         return \Apishka\Transformer\FriendlyException::apishka(
-            array(
+            [
                 'message'   => $message,
                 'code'      => $code,
-            ),
+            ],
             $params
         );
     }
@@ -505,10 +471,9 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     protected function getFieldErrors()
     {
-        $errors = array();
+        $errors = [];
         foreach ($this->getFields() as $field)
         {
             if (!$field->isValid())
@@ -525,7 +490,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FormAbstract
      */
-
     public function setError(Throwable $exception)
     {
         $this->_error = $exception;
@@ -538,7 +502,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Throwable
      */
-
     public function getError()
     {
         return $this->_error;
@@ -552,7 +515,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return array
      */
-
     public function processValues(array $values, $field)
     {
         return $values;
@@ -565,7 +527,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FormAbstract
      */
-
     public function setUseDefaultOnError($flag)
     {
         return $this->setOption('use_default_on_error', (bool) $flag);
@@ -576,7 +537,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return bool
      */
-
     public function getUseDefaultOnError()
     {
         return $this->getOption('use_default_on_error');
@@ -590,7 +550,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     protected function setOption($name, $value)
     {
         $this->_options[$name] = $value;
@@ -605,7 +564,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return mixed
      */
-
     protected function getOption($name)
     {
         if (!$this->hasOption($name))
@@ -621,7 +579,6 @@ abstract class Apishka_Form_FormAbstract
      *
      * @return bool
      */
-
     protected function hasOption($name)
     {
         return array_key_exists($name, $this->_options);

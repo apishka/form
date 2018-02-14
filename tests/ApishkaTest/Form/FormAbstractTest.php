@@ -3,7 +3,6 @@
 /**
  * Apishka test form form abstract test
  */
-
 class ApishkaTest_Form_FormAbstractTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -11,7 +10,6 @@ class ApishkaTest_Form_FormAbstractTest extends \PHPUnit\Framework\TestCase
      *
      * @param bool $is_sent
      */
-
     protected function getForm()
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
@@ -31,7 +29,6 @@ class ApishkaTest_Form_FormAbstractTest extends \PHPUnit\Framework\TestCase
     /**
      * Test is sent
      */
-
     public function testIsSentWithoudRequest()
     {
         $form = $this->getForm();

@@ -3,7 +3,6 @@
 /**
  * Apishka test form field float test
  */
-
 class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -11,7 +10,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @param bool $is_sent
      */
-
     protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
@@ -41,7 +39,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @return Apishka_Form_Field_Signature
      */
-
     protected function getField($name, $is_sent = true)
     {
         $field = Apishka_Form_Field_Float::apishka($name);
@@ -53,7 +50,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
     /**
      * Test name
      */
-
     public function testName()
     {
         $field = $this->getField('float_filed');
@@ -94,7 +90,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
     /**
      * Test value with empty request
      */
-
     public function testValueWithEmptyRequest()
     {
         $field = $this->getField('float_filed');
@@ -112,14 +107,13 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      * @expectedException Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage wrong input format
      */
-
     public function testValueWithInvalidRequest()
     {
         $field = $this->getField('float_filed');
 
-        $_POST = array(
+        $_POST = [
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
-        );
+        ];
 
         $this->assertFalse($field->isValid());
 
@@ -131,14 +125,13 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testValueWithRequest()
     {
         $field = $this->getField('float_filed');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '100.1',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -150,7 +143,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
     /**
      * Test not required
      */
-
     public function testNotRequired()
     {
         $field = $this->getField('float_filed');
@@ -165,7 +157,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testRequired()
     {
         $field = $this->getField('float_filed');
@@ -181,14 +172,13 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testBlankValue()
     {
         $field = $this->getField('float_filed');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -197,7 +187,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value
      */
-
     public function testDefaultValue()
     {
         $field = $this->getField('float_filed');
@@ -215,15 +204,14 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testDefaultValueWithBlankRequest()
     {
         $field = $this->getField('float_filed');
         $field->setDefault(1);
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -236,16 +224,15 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      * @expectedException        \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testDefaultRequiredValueWithBlankRequest()
     {
         $field = $this->getField('float_filed');
         $field->setRequired(true);
         $field->setDefault(1);
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertFalse($field->isValid());
 
@@ -255,7 +242,6 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value for non sent form
      */
-
     public function testDefaultValueForNonSentForm()
     {
         $field = $this->getField('float_filed', false);
@@ -277,16 +263,15 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      * @param mixed $value
      * @param array $values
      */
-
     public function testGoodValues($value, $values)
     {
         $field = $this->getField('float_filed')
             ->setValues($values)
         ;
 
-        $_POST = array(
+        $_POST = [
             $field->name => $value,
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -300,15 +285,14 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function goodValuesProvider()
     {
-        return array(
-            array(1, ['1' => 'test']),
-            array(-1, ['-1' => 'test']),
-            array(true, ['1' => 'test']),
-            array('1', function () {return array(1 => 123); }),
-        );
+        return [
+            [1, ['1' => 'test']],
+            [-1, ['-1' => 'test']],
+            [true, ['1' => 'test']],
+            ['1', function () {return [1 => 123]; }],
+        ];
     }
 
     /**
@@ -322,16 +306,15 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      * @param mixed $value
      * @param array $values
      */
-
     public function testBadValues($value, $values)
     {
         $field = $this->getField('float_filed')
             ->setValues($values)
         ;
 
-        $_POST = array(
+        $_POST = [
             $field->name => $value,
-        );
+        ];
 
         $this->assertFalse($field->isValid());
 
@@ -343,16 +326,15 @@ class ApishkaTest_Form_Field_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function badValuesProvider()
     {
-        return array(
-            array(1, ['test' => 'test']),
-            array(1.2, ['test' => 'test']),
-            array(true, ['test' => 'test']),
-            array('test', ['test1' => 'test1']),
-            array(function () {}, ['test' => 'test']),
-            array(new \StdClass(), ['test' => 'test']),
-        );
+        return [
+            [1, ['test' => 'test']],
+            [1.2, ['test' => 'test']],
+            [true, ['test' => 'test']],
+            ['test', ['test1' => 'test1']],
+            [function () {}, ['test' => 'test']],
+            [new \StdClass(), ['test' => 'test']],
+        ];
     }
 }

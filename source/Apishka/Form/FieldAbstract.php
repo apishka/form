@@ -3,13 +3,11 @@
 /**
  * Apishka form field abstract
  */
-
 abstract class Apishka_Form_FieldAbstract
 {
     /**
      * Traits
      */
-
     use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 
     /**
@@ -17,7 +15,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @var Throwable
      */
-
     private $_error = null;
 
     /**
@@ -25,7 +22,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @var Apishka_Form_FormAbstract
      */
-
     private $_form = null;
 
     /**
@@ -33,15 +29,13 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @var array
      */
-
-    private $_options = array();
+    private $_options = [];
 
     /**
      * Value
      *
      * @var mixed
      */
-
     private $_value = null;
 
     /**
@@ -49,7 +43,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @var bool
      */
-
     private $_value_validated = false;
 
     /**
@@ -57,7 +50,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @var array
      */
-
     private $_values = null;
 
     /**
@@ -65,13 +57,11 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @var mixed
      */
-
     private $_default_value = null;
 
     /**
      * Default value calculated
      */
-
     private $_default_value_calculated = false;
 
     /**
@@ -79,7 +69,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @var bool
      */
-
     private $_is_initialized = false;
 
     /**
@@ -87,7 +76,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @param mixed $name
      */
-
     public function __construct($name)
     {
         $this->setName($name);
@@ -106,7 +94,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     protected static function __apishkaElement(array $data, $name, array $arguments)
     {
         return new $data['class']('element');
@@ -117,7 +104,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string
      */
-
     public function __apishkaGetPrefixes()
     {
         return 'apishka|element';
@@ -130,7 +116,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Admin_ElementAbstract this
      */
-
     public function initialize(Apishka_Form_FormAbstract $form)
     {
         $this->_is_initialized = true;
@@ -144,7 +129,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return bool
      */
-
     public function isInitialized()
     {
         return $this->_is_initialized;
@@ -155,17 +139,16 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     protected function getDefaultOptions()
     {
-        return array(
+        return [
             'value'                 => null,
             'values'                => null,
             'default_value'         => null,
             'required'              => false,
             'transformations'       => $this->getDefaultTransformations(),
             'use_default_on_error'  => null,
-        );
+        ];
     }
 
     /**
@@ -173,7 +156,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FormAbstract
      */
-
     protected function getForm()
     {
         if ($this->_form === null)
@@ -189,7 +171,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     public function __get($name)
     {
         $method = '__get' . $name;
@@ -206,7 +187,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return bool
      */
-
     public function __isset($name)
     {
         $method = '__get' . $name;
@@ -223,7 +203,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setName($name)
     {
         if (!$this->hasOption('structure_name') || !$this->getOption('structure_name'))
@@ -239,7 +218,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string
      */
-
     public function getName()
     {
         return $this->getOption('name');
@@ -250,7 +228,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string
      */
-
     protected function __getName()
     {
         return $this->getName();
@@ -263,7 +240,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setId($id)
     {
         return $this->setOption('id', $id);
@@ -274,7 +250,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string
      */
-
     public function getId()
     {
         return $this->getOption('id');
@@ -285,7 +260,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string
      */
-
     protected function __getId()
     {
         if ($this->getId())
@@ -301,7 +275,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setStructureName($name)
     {
         return $this->setOption('structure_name', $name);
@@ -312,7 +285,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string
      */
-
     public function getStructureName()
     {
         if (!$this->hasOption('structure_name'))
@@ -326,7 +298,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string
      */
-
     protected function __getStructure_name()
     {
         return $this->getStructureName();
@@ -339,7 +310,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setRequired($required)
     {
         return $this->setOption('required', (bool) $required);
@@ -350,7 +320,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return bool
      */
-
     public function getRequired()
     {
         return $this->getOption('required');
@@ -361,7 +330,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return bool
      */
-
     protected function __getRequired()
     {
         return $this->getRequired();
@@ -372,7 +340,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     public function isValid()
     {
         if (!$this->getForm()->isSent())
@@ -390,7 +357,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setValue($value)
     {
         return $this->setOption('value', $value);
@@ -401,7 +367,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     public function getValue()
     {
         return $this->getOption('value');
@@ -412,7 +377,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     protected function __getValue()
     {
         if ($this->getForm()->isSent())
@@ -435,7 +399,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setDefault($value)
     {
         $this->_default_value_calculated = false;
@@ -448,7 +411,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     public function getDefault()
     {
         return $this->getOption('default_value');
@@ -459,7 +421,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     protected function __getDefault()
     {
         if (!$this->_default_value_calculated)
@@ -483,7 +444,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setUseDefaultOnError($flag)
     {
         return $this->setOption('use_default_on_error', $flag);
@@ -494,7 +454,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return bool|null
      */
-
     public function getUseDefaultOnError()
     {
         return $this->getOption('use_default_on_error');
@@ -505,7 +464,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     protected function validate()
     {
         if (!$this->_value_validated)
@@ -536,7 +494,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     public function runValidations($value = null)
     {
         return $this->getForm()->getValidator()->validate(
@@ -550,10 +507,9 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     protected function getDefaultTransformations()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -564,7 +520,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract
      */
-
     public function setTransformations($transformations)
     {
         return $this->setOption('transformations', $transformations);
@@ -577,7 +532,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Admin_FieldAbstract this
      */
-
     public function getTransformations()
     {
         return $this->getOption('transformations');
@@ -591,8 +545,7 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Admin_FieldAbstract this
      */
-
-    public function pushTransformation($transformation, array $options = array())
+    public function pushTransformation($transformation, array $options = [])
     {
         $transformations = $this->getTransformations();
         $transformations[$transformation] = $options;
@@ -607,7 +560,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function delTransformation($transformation)
     {
         $transformations = $this->getTransformations();
@@ -624,13 +576,12 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Admin_FieldAbstract this
      */
-
-    public function unshiftTransformation($transformation, array $options = array())
+    public function unshiftTransformation($transformation, array $options = [])
     {
         return $this->setTransformations(
-            array(
+            [
                 $transformation => $options,
-            )
+            ]
             +
             $this->getTransformations()
         );
@@ -641,7 +592,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return \Apishka\Transformer\Exception
      */
-
     public function getError()
     {
         return $this->_error;
@@ -652,7 +602,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return bool
      */
-
     public function hasError()
     {
         return $this->_error !== null;
@@ -663,7 +612,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return string|null
      */
-
     protected function __getErrorMessage()
     {
         if ($this->isValid())
@@ -677,7 +625,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return int|null
      */
-
     protected function __getErrorCode()
     {
         if ($this->isValid())
@@ -693,7 +640,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract
      */
-
     public function setError(Throwable $exception)
     {
         $this->_error = $exception;
@@ -706,7 +652,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     public function getValueFromRequest()
     {
         $func = $this->getRequestGetter();
@@ -734,7 +679,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setValues($values)
     {
         if (!is_array($values) && !($values instanceof \Closure))
@@ -751,7 +695,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     public function getValues()
     {
         return $this->getOption('values');
@@ -762,7 +705,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     protected function __getValues()
     {
         if ($this->_values === null)
@@ -785,7 +727,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract
      */
-
     public function setRequestGetter($getter)
     {
         return $this->setOption('request_getter', $getter);
@@ -796,7 +737,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     public function getRequestGetter()
     {
         return $this->getOption('request_getter');
@@ -810,7 +750,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     protected function setOption($name, $value)
     {
         $this->_options[$name] = $value;
@@ -825,7 +764,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return mixed
      */
-
     protected function getOption($name)
     {
         if (!$this->hasOption($name))
@@ -841,7 +779,6 @@ abstract class Apishka_Form_FieldAbstract
      *
      * @return bool
      */
-
     protected function hasOption($name)
     {
         return array_key_exists($name, $this->_options);

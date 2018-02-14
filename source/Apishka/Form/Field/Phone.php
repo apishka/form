@@ -3,7 +3,6 @@
 /**
  * Apishka form field phone
  */
-
 class Apishka_Form_Field_Phone extends Apishka_Form_FieldAbstract
 {
     /**
@@ -11,10 +10,9 @@ class Apishka_Form_Field_Phone extends Apishka_Form_FieldAbstract
      *
      * @return array
      */
-
     protected function getDefaultTransformations()
     {
-        $transformations = array();
+        $transformations = [];
 
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired(); }];
@@ -31,7 +29,6 @@ class Apishka_Form_Field_Phone extends Apishka_Form_FieldAbstract
      *
      * @return Apishka_Form_FieldAbstract this
      */
-
     public function setCountryCode($code)
     {
         return $this->setOption('country_code', (string) $code);
@@ -42,7 +39,6 @@ class Apishka_Form_Field_Phone extends Apishka_Form_FieldAbstract
      *
      * @return bool
      */
-
     public function getCountryCode()
     {
         return $this->getOption('country_code');

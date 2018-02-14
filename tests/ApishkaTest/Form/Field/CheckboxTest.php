@@ -3,7 +3,6 @@
 /**
  * Apishka test form field checkbox test
  */
-
 class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -11,7 +10,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
      *
      * @param bool $is_sent
      */
-
     protected function getForm($is_sent)
     {
         $stub = $this->getMockBuilder('Apishka_Form_FormAbstract')
@@ -41,7 +39,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
      *
      * @return Apishka_Form_Field_Signature
      */
-
     protected function getField($name, $is_sent = true)
     {
         $field = Apishka_Form_Field_Checkbox::apishka($name);
@@ -53,7 +50,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Test name
      */
-
     public function testName()
     {
         $field = $this->getField('checkbox_field');
@@ -94,7 +90,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Test value with empty request
      */
-
     public function testValueWithEmptyRequest()
     {
         $field = $this->getField('checkbox_field');
@@ -113,14 +108,13 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testValueWithInvalidRequest()
     {
         $field = $this->getField('checkbox_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => 'edfaed6b51dedc42b21d58134f1afe93',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -134,14 +128,13 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testValueWithRequest()
     {
         $field = $this->getField('checkbox_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '100',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertSame(
@@ -153,7 +146,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Test not required
      */
-
     public function testNotRequired()
     {
         $field = $this->getField('checkbox_field');
@@ -168,7 +160,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Test required
      */
-
     public function testRequired()
     {
         $field = $this->getField('checkbox_field');
@@ -184,14 +175,13 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Test blank value
      */
-
     public function testBlankValue()
     {
         $field = $this->getField('checkbox_field');
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -200,7 +190,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value
      */
-
     public function testDefaultValue()
     {
         $field = $this->getField('string_field');
@@ -218,15 +207,14 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
      *
      * @backupGlobals enabled
      */
-
     public function testDefaultValueWithBlankRequest()
     {
         $field = $this->getField('string_field');
         $field->setDefault(1);
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertTrue($field->isValid());
         $this->assertNull($field->value);
@@ -239,16 +227,15 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
      * @expectedException \Apishka\Transformer\FriendlyException
      * @expectedExceptionMessage cannot be empty
      */
-
     public function testDefaultRequiredValueWithBlankRequest()
     {
         $field = $this->getField('string_field');
         $field->setRequired(true);
         $field->setDefault(1);
 
-        $_POST = array(
+        $_POST = [
             $field->name => '',
-        );
+        ];
 
         $this->assertFalse($field->isValid());
 
@@ -258,7 +245,6 @@ class ApishkaTest_Form_Field_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Test default value for non sent form
      */
-
     public function testDefaultValueForNonSentForm()
     {
         $field = $this->getField('string_field', false);

@@ -3,7 +3,6 @@
 /**
  * Apishka form field time
  */
-
 class Apishka_Form_Field_Time extends Apishka_Form_Field_DateTimeAbstract
 {
     /**
@@ -11,10 +10,9 @@ class Apishka_Form_Field_Time extends Apishka_Form_Field_DateTimeAbstract
      *
      * @return array
      */
-
     protected function getDefaultTransformations()
     {
-        $transformations = array();
+        $transformations = [];
 
         $transformations['Transform/Blank'] = [];
         $transformations['Transform/NotBlank'] = ['condition' => function () {return $this->getRequired(); }];
