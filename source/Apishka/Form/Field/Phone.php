@@ -30,7 +30,7 @@ class Apishka_Form_Field_Phone extends Apishka_Form_FieldAbstract
      *
      * @param string $code
      *
-     * @return Apishka_Form_FieldAbstract this
+     * @return $this
      */
     public function setCountryCode($code)
     {
